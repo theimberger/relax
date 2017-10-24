@@ -1,4 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-alert("Hello, world.");
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.getElementById('root');
+  ReactDOM.render(<h1>Welcome to Relax</h1>, root);
+});
