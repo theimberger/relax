@@ -1,7 +1,6 @@
 class Api::SessionsController < ApplicationController
 
   def create
-    debugger
     if !logged_in?
       @user = User.find_by_credentials(
         params[:user][:username],
@@ -9,6 +8,7 @@ class Api::SessionsController < ApplicationController
       )
       if @user
         login(@user)
+        render "api/users/show"
       else
         render json: ["Invalid login information."], status: 422
       end
