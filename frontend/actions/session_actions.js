@@ -1,4 +1,4 @@
-import * as ApiUtils from '../utils/sesssion_api_util';
+import * as ApiUtils from '../utils/session_api_util';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
