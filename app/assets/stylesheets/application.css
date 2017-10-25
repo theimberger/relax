@@ -147,3 +147,9 @@ button {
 	border: 1px solid #2f369d;
 	background: #2f369d;
 }
+
+.errors {
+	color: red;
+	font-size: 1.5em;
+	margin: 10px;
+}

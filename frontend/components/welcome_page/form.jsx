@@ -5,7 +5,8 @@ class WelcomeForm extends React.Component {
   constructor(props) {
     super();
     this.state = {
-
+      username: "",
+      password: ""
     };
     this.handleSubmit.bind(this);
     this.update.bind(this);
@@ -18,19 +19,30 @@ class WelcomeForm extends React.Component {
     };
   }
 
-  handleSubmit() {
-    debugger
-    this.props.login(this.state);
+  handleSubmit(e) {
+    e.preventDefault();
+    if (e.currentTarget.innerHTML === "Get Started") {
+      this.props.signup(this.state);
+    } else {
+      this.props.login(this.state);
+    }
   }
 
   render() {
+    var errors;
+
+    if (Array.isArray(this.props.errors)) {
+      errors = <div className="errors">{this.props.errors.join(".  ")}</div>;
+    }
+
     let form;
     if (this.props.currentUser) {
       form = <form className="session">
-        <button>Get Started</button>
+        <button>Go to Your Spaces</button>
+        <button onClick={ () => this.props.logout() }>Logout</button>
       </form>;
     } else {
-      form = <form className="session" onSubmit={ () => this.handleSubmit() }>
+      form = <form className="session">
         <input
           type="text"
           onChange={this.update("username")}
@@ -42,8 +54,10 @@ class WelcomeForm extends React.Component {
           onChange={this.update("password")}
           placeholder="Password"
         />
-
-        <button>Get Started</button>
+        <br />
+        <br />
+        <button onClick={ (e) => this.handleSubmit(e) }>Get Started</button>
+        <button onClick={ (e) => this.handleSubmit(e) }>Log In</button>
       </form>;
     }
 
@@ -52,8 +66,8 @@ class WelcomeForm extends React.Component {
         <h1>Where Breaks Happen</h1>
         <br/>
         {form}
-        {console.log(this.props)}
-        {console.log(this.state)}
+        {errors}
+
       </div>
     );
   }
