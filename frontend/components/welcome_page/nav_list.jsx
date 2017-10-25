@@ -6,7 +6,7 @@ const NavList = () => (
     <li>Pricing</li>
     <li>About Us</li>
     <li>Find Your Zen</li>
-    <li>Create a Space</li>
+    <li><button>Create a Space</button></li>
   </ul>
 );
 

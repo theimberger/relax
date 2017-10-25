@@ -15,16 +15,22 @@
  */
 
 
+
 html, body, div, span, h1, h2, h3, h4, h5, h6,
-p, a, img, strike, strong, tt, ul, li, form,
+p, a, img, strike, strong, tt, ul, li, form, button, input,
 footer, header, nav, section {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif;
 	vertical-align: baseline;
+	-webkit-transition: color 1s, border 1s; /* Safari */
+  transition: color 1s, border 1s;
 }
+
+
+
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -48,4 +54,96 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+button {
+	cursor: pointer;
+	-webkit-transition: color 1s, border 1s; /* Safari */
+  transition: color 1s, border 1s;
+}
+
+.welcome_nav {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 70px;
+	color: #777777;
+	border-bottom: 1px solid #ebebeb;
+	font-size: 1em;
+}
+
+.welcome_nav ul {
+	display: flex;
+	align-items: center;
+}
+
+.welcome_nav li {
+	margin-right: 50px;
+	cursor: pointer;
+}
+
+.welcome_nav button {
+	margin-right: 20px;
+	color: inherit;
+	cursor: pointer;
+	border: 1px solid #777777;
+	background: inherit;
+	padding: 8px;
+	border-radius: 5px;
+}
+
+.welcome_nav li:hover {
+	color: #3f46ad;
+}
+
+.welcome_nav button:hover {
+	color: #3f46ad;
+	border: 1px solid #3f46ad;
+}
+
+.welcome_nav .logo {
+	margin-top: 5px;
+	margin-left: 50px;
+	height: 30px;
+}
+
+.welcome_main {
+	display: flex;
+}
+.welcome_main h1 {
+	font-family: 'Lora', serif;
+	font-size: 5em;
+	font-weight: 700;
+}
+
+.session button, .session input {
+	height: 50px;
+	border-radius: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-left: 5px;
+}
+
+.session button {
+	border: 1px solid #3f46ad;
+	background: #3f46ad;
+	color: white;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.session input {
+	width: 30%;
+	border: 1px solid #ebebeb;
+}
+
+.session input:focus {
+	border: 1px solid #3f46ad;
+	outline: none;
+}
+
+.session button:hover {
+	border: 1px solid #2f369d;
+	background: #2f369d;
 }

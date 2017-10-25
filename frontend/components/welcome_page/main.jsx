@@ -1,8 +1,8 @@
 import React from 'react';
-import WelcomeForm from './form';
+import WelcomeForm from './form_container';
 
 const Main = () => (
-  <div>
+  <div className="welcome_main">
     <div>
       <img className="illustration" src="" />
     </div>
