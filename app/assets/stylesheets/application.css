@@ -110,11 +110,19 @@ button {
 
 .welcome_main {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
+
 .welcome_main h1 {
 	font-family: 'Lora', serif;
 	font-size: 5em;
 	font-weight: 700;
+	margin-right: 50px;
+}
+
+.welcome_main img {
+	margin-top: 40px;
 }
 
 .session button, .session input {
