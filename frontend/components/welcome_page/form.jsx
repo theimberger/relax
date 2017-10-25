@@ -6,20 +6,43 @@ class WelcomeForm extends React.Component {
     super();
     this.state = {
 
-    }
+    };
+    this.handleSubmit.bind(this);
+    this.update.bind(this);
+  }
+
+  update(field) {
+    return (e) => {
+      let newState = {[field]: e.currentTarget.value};
+      this.setState(newState);
+    };
+  }
+
+  handleSubmit() {
+    debugger
+    this.props.login(this.state);
   }
 
   render() {
     let form;
-    if (this.props.loggedIn) {
-      form = <form class="session">
+    if (this.props.currentUser) {
+      form = <form className="session">
         <button>Get Started</button>
       </form>;
-
     } else {
-      form = <form class="session">
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
+      form = <form className="session" onSubmit={ () => this.handleSubmit() }>
+        <input
+          type="text"
+          onChange={this.update("username")}
+          placeholder="Username"
+        />
+
+        <input
+          type="password"
+          onChange={this.update("password")}
+          placeholder="Password"
+        />
+
         <button>Get Started</button>
       </form>;
     }
@@ -29,6 +52,8 @@ class WelcomeForm extends React.Component {
         <h1>Where Breaks Happen</h1>
         <br/>
         {form}
+        {console.log(this.props)}
+        {console.log(this.state)}
       </div>
     );
   }

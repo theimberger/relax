@@ -6,6 +6,8 @@ const mapStateToProps = state => (
     { currentUser: state.session.currentUser }
 );
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = dispatch => ({
+  login: (user) => dispatch(login(user))
+});
 
-export default connect(mapStateToProps, null)(WelcomeForm);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomeForm);
