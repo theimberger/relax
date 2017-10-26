@@ -37,6 +37,7 @@ class WelcomeForm extends React.Component {
 
     let form;
     if (this.props.currentUser) {
+      this.props.getSpaces();
       form = <form className="session">
         <button>Go to Your Spaces</button>
         <button onClick={ () => this.props.logout() }>Logout</button>

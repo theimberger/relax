@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import WelcomeForm from './form';
 import { login, logout, signup } from '../../actions/session_actions';
+import { requestUserSpaces } from '../../actions/spaces_actions';
 
 const mapStateToProps = state => (
   {
@@ -12,7 +13,8 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => ({
   login: (user) => dispatch(login(user)),
   logout: () => dispatch(logout()),
-  signup: (user) => dispatch(signup(user))
+  signup: (user) => dispatch(signup(user)),
+  getSpaces: () => dispatch(requestUserSpaces())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomeForm);

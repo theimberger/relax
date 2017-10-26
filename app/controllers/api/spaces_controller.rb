@@ -12,7 +12,7 @@ class Api::SpacesController < ApplicationController
         is_admin: true
       }).save!
 
-      render :index
+      render :show
     else
       render json: @space.errors.full_messages, status: 422
     end

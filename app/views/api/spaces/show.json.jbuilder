@@ -1,1 +1,1 @@
-json.partial! "api/spaces/space", space: @space
+json.extract! @space, :id, :title, :description

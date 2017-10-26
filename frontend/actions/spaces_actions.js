@@ -3,6 +3,7 @@ import * as ApiUtils from '../utils/space_api_util';
 export const RECEIVE_USER_SPACES = "RECEIVE_USER_SPACES";
 export const RECEIVE_SINGLE_SPACE = "RECEIVE_SINGLE_SPACE";
 export const CREATE_SPACE = "CREATE_SPACE";
+export const UPDATE_SPACE = "UPDATE_SPACE";
 export const RECEIVE_SPACE_ERRORS = "RECEIVE_SPACE_ERRORS";
 
 export const receiveUserSpaces = (spaces) => ({
@@ -26,7 +27,7 @@ export const createSpace = (space) => ({
 });
 
 export const postSpace = (space) => dispatch => (
-  ApiUtils.createSpace(space).then( res => dispatch(receiveSingleSpace(res)),
+  ApiUtils.createSpace(space).then( res => dispatch(createSpace(res)),
   err => dispatch(receiveSpaceErrors(err)))
 );
 
