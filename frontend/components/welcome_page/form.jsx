@@ -19,6 +19,10 @@ class WelcomeForm extends React.Component {
     };
   }
 
+  navigateToSpaceIndex() {
+    this.props.history.push('/my_spaces');
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (e.currentTarget.innerHTML === "Get Started") {
@@ -32,12 +36,11 @@ class WelcomeForm extends React.Component {
     var errors;
 
     if (Array.isArray(this.props.errors)) {
-      errors = <div className="errors">{this.props.errors.join(".  ")}</div>;
+      errors = <p className="errors">{this.props.errors.join(".  ")}</p>;
     }
 
     let form;
     if (this.props.currentUser) {
-      this.props.getSpaces();
       form = <form className="session">
         <button>Go to Your Spaces</button>
         <button onClick={ () => this.props.logout() }>Logout</button>
@@ -66,6 +69,12 @@ class WelcomeForm extends React.Component {
       <div>
         <h1>Where Breaks Happen</h1>
         <br/>
+        <p>
+          When your team needs to kick back, find a new hobby, deploy
+          some brews, take some time, meet up, socialize, plan your next
+          office party, and more, Relax has you covered.
+        </p>
+        <br/><br/>
         {form}
         {errors}
 

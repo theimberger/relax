@@ -156,8 +156,12 @@ button {
 	background: #2f369d;
 }
 
+.welcome_main p {
+	font-size: 1.5em;
+	margin-top: 20px;
+	margin-right: 50px;
+}
+
 .errors {
 	color: red;
-	font-size: 1.5em;
-	margin: 10px;
 }
