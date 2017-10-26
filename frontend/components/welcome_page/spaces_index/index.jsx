@@ -15,16 +15,28 @@ class Index extends React.Component {
   }
 
   render() {
+
     let spaces = Object.keys(this.props.spaces).map( (id) => (
       <li key={id}>
-        {this.props.spaces[id].title}
+        <span><h3>{this.props.spaces[id].title}</h3></span>
+        <button>Launch</button>
       </li>
     ));
+
+    let joinedSpaces;
+    if (spaces.length === 1) {
+      joinedSpaces = <p> You're already signed into this space</p>;
+    } else if (spaces.length > 1) {
+      joinedSpaces = <p> You're already signed into these spaces</p>;
+    }
+
     return (
       <div>
-        <h1>Start with a space</h1>
+        <h2>Start with a space</h2>
+
         <br/>
-        <ul>
+        {joinedSpaces}
+        <ul className="spaces_list">
           {spaces}
         </ul>
       </div>

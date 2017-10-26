@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 class WelcomeForm extends React.Component {
 
@@ -8,8 +9,9 @@ class WelcomeForm extends React.Component {
       username: "",
       password: ""
     };
-    this.handleSubmit.bind(this);
-    this.update.bind(this);
+    // this.handleSubmit.bind(this);
+    // this.update.bind(this);
+    this.navigateToSpaceIndex.bind(this);
   }
 
   update(field) {
@@ -26,9 +28,9 @@ class WelcomeForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (e.currentTarget.innerHTML === "Get Started") {
-      this.props.signup(this.state);
+      this.props.signup(this.state).then(() => this.navigateToSpaceIndex());
     } else {
-      this.props.login(this.state);
+      this.props.login(this.state).then(() => this.navigateToSpaceIndex());
     }
   }
 
@@ -83,4 +85,4 @@ class WelcomeForm extends React.Component {
   }
 }
 
-export default WelcomeForm;
+export default withRouter(WelcomeForm);

@@ -1,0 +1,48 @@
+.si_main {
+  display: flex;
+  justify-content: space-around;
+  background: #f8f8f8;
+}
+
+.si_main h2 {
+  margin: 20px;
+}
+
+.si_main p {
+  margin: 50px 20px 20px 20px;
+}
+
+.si_main ul {
+  width: 500px;
+}
+
+.si_main li {
+  height: 50px;
+  border: 1px solid #ebebeb;
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+}
+
+.si_main p, .si_main h3 {
+  font-size: 1em;
+}
+
+.si_main button {
+  background: inherit;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  padding: 5px 20px 5px 20px;
+  -webkit-transition:none; /* Safari */
+  transition: none;
+}
+
+.si_main button:hover {
+  background: white;
+  color: #0576b9;
+  padding: 5px 20px 5px 20px;
+}

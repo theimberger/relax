@@ -2,7 +2,7 @@ import React from 'react';
 import Index from './index_container';
 
 const Main = () => (
-  <div className="spaces_main">
+  <div className="si_main">
     <Index />
   </div>
 );
