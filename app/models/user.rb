@@ -3,6 +3,16 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
 
+  # associatations
+  has_many :space_memberships,
+    class_name: :SpaceMembership,
+    foreign_key: :user_id
+
+  has_many :spaces,
+    through: :space_memberships,
+    source: :space
+
+  # auth methods
   after_initialize :ensure_session_token
 
   def password=(password)
@@ -24,7 +34,7 @@ class User < ApplicationRecord
     self.session_token
   end
 
-  #class methods
+  # class methods
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64

@@ -3,20 +3,29 @@ class Api::SpacesController < ApplicationController
   before_action :ensure_logged_in
 
   def create
-    @spcae = Space.new(space_params)
+    @space = Space.new(space_params)
     if @space.save
-      render :show
+
+      SpaceMembership.new({
+        user_id: current_user.id,
+        space_id: @space.id,
+        is_admin: true
+      }).save!
+
+      render :index
     else
       render json: @space.errors.full_messages, status: 422
     end
   end
 
   def show
-
+    @space = Space.find(params[:id])
+    render :show
   end
 
   def index
-    p "Space index action fired"
+    @spaces = current_user.spaces
+    render json: @spaces
   end
 
   def update

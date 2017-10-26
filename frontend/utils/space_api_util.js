@@ -2,14 +2,20 @@ export const createSpace = (space) => {
   return $.ajax({
     method: "POST",
     url: "api/spaces",
-    error: (err) => console.log(err)
+    data: space
   });
 };
 
-export const fetchSpaces = () => {
+export const fetchUserSpaces = () => {
   return $.ajax({
     method: "GET",
-    url: "api/spaces",
-    error: (err) => console.log(err)
+    url: "api/spaces"
+  });
+};
+
+export const fetchSingleSpace = (id) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/spaces/${id}`
   });
 };
