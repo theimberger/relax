@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
       @current_user = nil
   end
 
+  def ensure_logged_in
+    unless logged_in?
+      render json: ["You must be logged in."], status: 403
+    end
+  end
+
 end
