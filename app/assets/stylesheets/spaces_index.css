@@ -89,14 +89,41 @@
 
 .add_space label {
   font-size: 3em;
+  align-self: flex-start;
+  width: 100%;
 }
 
-.add_space input {
+.add_space input, .add_space textarea {
+  box-sizing: border-box;
   border: 1px solid #ababab;
   align-self: flex-start;
-  width: 80%;
-  margin-top: 50px;
+  width: 100%;
+  margin-top: 30px;
   font-size: 2em;
   border-radius: 5px;
   padding: 5px 20px 5px 20px;
+}
+
+.add_space textarea {
+  outline: none;
+  font-size: 2em;
+  resize: none;
+  min-height: 100px;
+}
+
+.add_space button {
+  /*width: 30%;*/
+  align-self: center;
+  font-size: 2em;
+  margin-top: 30px;
+  border-radius: 5px;
+  background: #2ea664;
+  font-weight: 400;
+  color: white;
+  border-bottom: 4px solid #2ea664;
+  padding: 0px 20px 0px 20px;
+}
+
+.add_space button:hover {
+  border-bottom: 4px solid #0e8644;
 }
