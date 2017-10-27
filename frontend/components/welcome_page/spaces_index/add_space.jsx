@@ -77,9 +77,11 @@ class AddSpace extends React.Component {
     }
 
     if (this.state.errors !== "") {
-      errors = <span className="errors" style={{fontSize: "2em"}}><br/>{this.state.warning}</span>;
+      errors = <span className="errors" style={{fontSize: "2em"}}>
+        <br/>{this.state.warning}
+      </span>;
     }
-    
+
     return (
       <div className="add_space">
         <Nav />
