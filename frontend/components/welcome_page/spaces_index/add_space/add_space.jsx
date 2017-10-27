@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from './nav';
+import Nav from '../nav';
 class AddSpace extends React.Component {
 
   constructor(props) {
