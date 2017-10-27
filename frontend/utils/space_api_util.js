@@ -6,6 +6,14 @@ export const createSpace = (space) => {
   });
 };
 
+export const updateSpace = (space) => {
+  return $.ajax({
+    method: "PATCH",
+    url: "api/spaces",
+    data: space
+  });
+};
+
 export const fetchUserSpaces = () => {
   return $.ajax({
     method: "GET",

@@ -31,6 +31,11 @@ export const postSpace = (space) => dispatch => (
   err => dispatch(receiveSpaceErrors(err)))
 );
 
+// export const updateSpace = (space) => dispatch => (
+//   ApiUtils.updateSpace(space).then( res => dispatch(createSpace(res)),
+//   err => dispatch(receiveSpaceErrors(err)))
+// );
+
 export const requestUserSpaces = () => dispatch => (
   ApiUtils.fetchUserSpaces().then( res => dispatch(receiveUserSpaces(res)),
   err => dispatch(receiveSpaceErrors(err)))

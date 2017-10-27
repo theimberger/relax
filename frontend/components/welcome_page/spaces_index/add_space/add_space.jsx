@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from '../nav';
+import * as Steps from './steps'
 class AddSpace extends React.Component {
 
   constructor(props) {
@@ -8,89 +9,101 @@ class AddSpace extends React.Component {
       step: 1,
       title: "",
       description: "",
-      warning: ""
+      warning: "",
+      stepState: "listening"
     };
 
-    this.changeStep.bind(this);
-    this.update.bind(this);
-  }
-
-  changeStep(e) {
-    e.preventDefault();
-    let prev = this.state;
-    if (this.state.step === 1 & this.state.title === "") {
-      document.getElementsByTagName('input')[0].focus();
-      prev.warning = "Please enter a space name.";
-    } else {
-      prev.step += 1;
-    }
-
-    if (prev.step > 2) {
-      this.props.postSpace({space: {
-        title: this.state.title,
-        description: this.state.description}});
-    }
-    this.setState( prev );
+    this.update = this.update.bind(this);
   }
 
   update(e) {
+    e.preventDefault();
     let newState = this.state;
     newState.warning = "";
-    if (this.state.step === 1){
-      newState.title = e.currentTarget.value;
-    } else {
-      newState.description = e.currentTarget.value;
-    }
+    newState.status = "listening";
 
+    switch(this.state.step) {
+      case 1:
+        switch(e.type) {
+          case "submit":
+            if (newState.title === "") {
+              newState.warning = "Please enter a title.";
+            } else {
+              newState.status = "pending";
+              this.props.postSpace({space: {title: newState.title}})
+                .then(() => {
+                  newState.step += 1;
+                  this.setState(newState);
+                },
+                () => {
+                  newState.warning = "Sorry, that name has already been taken!";
+                  newState.status = "failed";
+                  this.setState(newState);
+                });
+            }
+            break;
+          case "change":
+            newState.title = e.currentTarget.value;
+            break;
+          default:
+            break;
+          }
+        break;
+
+      case 2:
+        switch(e.type) {
+          case "submit":
+            newState.step += 1;
+            break;
+          case "change":
+            newState.description = e.currentTarget.value;
+            break;
+          default:
+            break;
+          }
+          break;
+
+        default:
+          break;
+    }
     this.setState(newState);
   }
 
   render() {
-    let labelText;
-    let input;
-    let buttonText;
+    let form;
     let errors;
 
-    if (this.state.step === 1){
-      labelText = "What's your space called?";
-
-      input = <input
-        placeholder="ex. my cool space"
-        onChange={(e) => this.update(e)}>
-        </input>;
-
-      if (this.state.title ==="") {
-        input = <input value={this.state.title}
-          onChange={(e) => this.update(e)}>
-          </input>;
-      }
-      buttonText = "Next";
-    } else {
-      labelText = "Give your space a description (optional).";
-      input = <textarea defaultValue={this.state.description}
-        onChange={(e) => this.update(e)}>
-        </textarea>;
-      buttonText = "Submit";
-      if (this.state.description === "") {
-        buttonText = "No, just submit";
-      }
+    switch (this.state.step) {
+      case 1:
+        form = Steps.one(this.update, this.status, this.state.title);
+        break;
+      case 2:
+        let buttonText = "Next";
+        if (this.state.description === "") {
+          buttonText = "Skip";
+        }
+        form = Steps.two(
+          this.update,
+          this.status,
+          this.state.description,
+          buttonText
+        );
+        break;
+      default:
+        break;
     }
 
-    if (this.state.errors !== "") {
-      errors = <span className="errors" style={{fontSize: "2em"}}>
+    if (this.state.warning !== "") {
+      errors = <div className="errors" style={{"fontSize": "2em", "textAlign": "center"}}>
         <br/>{this.state.warning}
-      </span>;
+      </div>;
     }
 
     return (
       <div className="add_space">
         <Nav />
-        <form onSubmit={ (e) => this.changeStep(e) }>
-          <label>{labelText}</label>
-          {input}
-          {errors}
-          <button>{buttonText}</button>
-        </form>
+        {form}
+        {errors}
       </div>
     );
   }
