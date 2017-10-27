@@ -29,8 +29,12 @@ class WelcomeForm extends React.Component {
     e.preventDefault();
     if (e.currentTarget.innerHTML === "Get Started") {
       this.props.signup(this.state).then(() => this.navigateToSpaceIndex());
-    } else {
+    } else if (e.currentTarget.innerHTML === "Log In") {
       this.props.login(this.state).then(() => this.navigateToSpaceIndex());
+    } else {
+      this.props.login({username: "demo", "password": "password1"}).then(
+        () => this.navigateToSpaceIndex()
+      );
     }
   }
 
@@ -66,6 +70,7 @@ class WelcomeForm extends React.Component {
         <br />
         <button onClick={ (e) => this.handleSubmit(e) }>Log In</button>
         <button onClick={ (e) => this.handleSubmit(e) }>Get Started</button>
+        <button onClick={ (e) => this.handleSubmit(e) }>Demo Sign In</button>
       </form>;
     }
 

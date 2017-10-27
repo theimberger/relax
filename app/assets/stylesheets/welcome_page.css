@@ -81,6 +81,9 @@
 	padding-right: 20px;
 }
 
+.session {
+	position: relative;
+}
 .session input {
 	width: 30%;
 	border: 1px solid #ebebeb;
@@ -88,10 +91,15 @@
 
 .session input:focus {
 	border: 1px solid #3f46ad;
-	outline: none;
+}
+
+.session button:nth-of-type(3) {
+	color: #3f46ad;
+	background: white;
 }
 
 .session button:hover {
+	color: white;
 	border: 1px solid #0f167d;
 	background: #0f167d;
 }

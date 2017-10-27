@@ -29,7 +29,6 @@ class Api::SpacesController < ApplicationController
   end
 
   def update
-    debugger
     @space = Space.find(params[:space][:id])
     admin_id = SpaceMembership.where(space_id: @space.id, is_admin: true).pluck(:user_id)
     if admin_id.include?(current_user.id)

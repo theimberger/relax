@@ -59,7 +59,6 @@ class AddSpace extends React.Component {
               newState.step += 1;
             } else {
               newState.space["description"] = newState.description;
-              // debugger
               this.props.updateSpace({space: newState.space}).then(
                 (action) => {
                   newState.space = action.space;
