@@ -138,3 +138,17 @@
   background: #f8f8f8;
   height: 100%;
 }
+
+.failed input {
+  -webkit-transition:color 0.25s; /* Safari */
+  transition: color 0.25s;
+  color: red;
+}
+
+.failed button {
+  visibility: hidden;
+}
+
+.pending {
+  display: none;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const one = (passInfoToParent, defaultValue) => (
-  <form onSubmit={ (e) => passInfoToParent(e) }>
+export const one = (passInfoToParent, status, defaultValue) => (
+  <form className={status} onSubmit={ (e) => passInfoToParent(e) }>
 
     <label>What's your space called?</label>
     <input value={defaultValue} onChange={(e) => passInfoToParent(e)}></input>
@@ -10,8 +10,8 @@ export const one = (passInfoToParent, defaultValue) => (
   </form>
 );
 
-export const two = (passInfoToParent, ...defaultValues) => (
-  <form onSubmit={ (e) => passInfoToParent(e) }>
+export const two = (passInfoToParent, status, ...defaultValues) => (
+  <form className={status} onSubmit={ (e) => passInfoToParent(e) }>
 
     <label>Give your space a description (optional).</label>
     <textarea defaultValue={defaultValues[0]} onChange={(e) => passInfoToParent(e)}>
@@ -22,8 +22,8 @@ export const two = (passInfoToParent, ...defaultValues) => (
   </form>
 );
 
-export const three = (passInfoToParent, ...defaultValues) => (
-  <form onSubmit={ (e) => passInfoToParent(e) }>
+export const three = (passInfoToParent, status, ...defaultValues) => (
+  <form className={status} onSubmit={ (e) => passInfoToParent(e) }>
 
     <label>Invite some buddies (optional).</label>
     <input value={defaultValues[0]} onChange={(e) => passInfoToParent(e)}>

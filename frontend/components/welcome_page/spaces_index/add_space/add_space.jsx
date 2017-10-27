@@ -72,10 +72,10 @@ class AddSpace extends React.Component {
   render() {
     let form;
     let errors;
-
+    console.log(this.st);
     switch (this.state.step) {
       case 1:
-        form = Steps.one(this.update, this.status, this.state.title);
+        form = Steps.one(this.update, this.state.status, this.state.title);
         break;
       case 2:
         let buttonText = "Next";
@@ -84,7 +84,7 @@ class AddSpace extends React.Component {
         }
         form = Steps.two(
           this.update,
-          this.status,
+          this.state.status,
           this.state.description,
           buttonText
         );
