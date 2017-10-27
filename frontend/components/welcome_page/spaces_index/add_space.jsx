@@ -24,6 +24,12 @@ class AddSpace extends React.Component {
     } else {
       prev.step += 1;
     }
+
+    if (prev.step > 2) {
+      this.props.postSpace({space: {
+        title: this.state.title,
+        description: this.state.description}});
+    }
     this.setState( prev );
   }
 
@@ -35,6 +41,7 @@ class AddSpace extends React.Component {
     } else {
       newState.description = e.currentTarget.value;
     }
+
     this.setState(newState);
   }
 
@@ -72,7 +79,7 @@ class AddSpace extends React.Component {
     if (this.state.errors !== "") {
       errors = <span className="errors" style={{fontSize: "2em"}}><br/>{this.state.warning}</span>;
     }
-
+    
     return (
       <div className="add_space">
         <Nav />

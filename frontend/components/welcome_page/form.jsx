@@ -64,8 +64,8 @@ class WelcomeForm extends React.Component {
         />
         <br />
         <br />
-        <button onClick={ (e) => this.handleSubmit(e) }>Get Started</button>
         <button onClick={ (e) => this.handleSubmit(e) }>Log In</button>
+        <button onClick={ (e) => this.handleSubmit(e) }>Get Started</button>
       </form>;
     }
 

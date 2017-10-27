@@ -10,7 +10,7 @@ import {
 
 import Welcome from './welcome_page/body';
 import SpacesIndex from './welcome_page/spaces_index/body';
-import AddSpace from './welcome_page/spaces_index/add_space';
+import AddSpace from './welcome_page/spaces_index/add_space_container';
 import JoinSpace from './welcome_page/spaces_index/join_space';
 
 const App = () => (
