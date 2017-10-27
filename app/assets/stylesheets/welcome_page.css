@@ -13,7 +13,7 @@
 	justify-content: space-between;
 	align-items: center;
 	height: 70px;
-	color: #777777;
+	color: #999999;
 	border-bottom: 1px solid #ebebeb;
 	font-size: 1em;
 }
@@ -32,7 +32,7 @@
 	margin-right: 20px;
 	color: inherit;
 	cursor: pointer;
-	border: 1px solid #777777;
+	border: 1px solid #999999;
 	background: inherit;
 	padding: 8px;
 	border-radius: 5px;
@@ -91,6 +91,6 @@
 }
 
 .session button:hover {
-	border: 1px solid #2f369d;
-	background: #2f369d;
+	border: 1px solid #0f167d;
+	background: #0f167d;
 }

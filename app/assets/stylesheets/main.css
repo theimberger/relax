@@ -10,6 +10,7 @@ footer, header, nav, section {
 	vertical-align: baseline;
 	-webkit-transition: color 1s, border 1s; /* Safari */
   transition: color 1s, border 1s;
+	outline: none;
 }
 
 /* HTML5 display-role reset for older browsers */

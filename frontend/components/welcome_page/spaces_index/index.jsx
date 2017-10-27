@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 class Index extends React.Component {
 
@@ -6,12 +7,16 @@ class Index extends React.Component {
     super();
     this.state = {
     };
-    // this.handleSubmit.bind(this);
+    this.navigateToAdd.bind(this);
     // this.update.bind(this);
   }
 
   componentDidMount(){
     this.props.getSpaces();
+  }
+
+  navigateToAdd() {
+    this.props.history.push('/my_spaces/add');
   }
 
   render() {
@@ -33,6 +38,24 @@ class Index extends React.Component {
     return (
       <div>
         <h2>Start with a space</h2>
+        <ul className="si_form_links">
+          <li>
+            <span>
+              <h3>Find your relaxing space</h3>
+              <br/> Join or sign into an existing space
+            </span>
+            <img src={window.arrow} />
+
+          </li>
+          <li onClick={ () => this.navigateToAdd() }>
+            <span>
+              <h3>Create a new relaxing space</h3>
+              <br/> Get your group on relax
+            </span>
+            <img src={window.arrow} />
+
+          </li>
+        </ul>
 
         <br/>
         {joinedSpaces}
@@ -44,4 +67,4 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default withRouter(Index);
