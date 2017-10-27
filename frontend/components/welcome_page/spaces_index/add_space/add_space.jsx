@@ -6,6 +6,7 @@ class AddSpace extends React.Component {
   constructor(props) {
     super();
     this.state = {
+      space: {},
       step: 1,
       title: "",
       description: "",
@@ -30,8 +31,9 @@ class AddSpace extends React.Component {
               newState.warning = "Please enter a title.";
             } else {
               newState.status = "pending";
-              this.props.postSpace({space: {title: newState.title}})
-                .then(() => {
+              this.props.postSpace({space: {title: newState.title}}).then(
+                (action) => {
+                  newState.space = action.space;
                   newState.step += 1;
                   this.setState(newState);
                 },
@@ -53,7 +55,23 @@ class AddSpace extends React.Component {
       case 2:
         switch(e.type) {
           case "submit":
-            newState.step += 1;
+            if (this.state.description === ""){
+              newState.step += 1;
+            } else {
+              newState.space["description"] = newState.description;
+              // debugger
+              this.props.updateSpace({space: newState.space}).then(
+                (action) => {
+                  newState.space = action.space;
+                  newState.step += 1;
+                  this.setState(newState);
+                },
+                () => {
+                  newState.warning = "Sorry, an error occured";
+                  newState.status = "failed";
+                  this.setState(newState);
+                });
+            }
             break;
           case "change":
             newState.description = e.currentTarget.value;
@@ -70,9 +88,9 @@ class AddSpace extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     let form;
     let errors;
-    console.log(this.st);
     switch (this.state.step) {
       case 1:
         form = Steps.one(this.update, this.state.status, this.state.title);

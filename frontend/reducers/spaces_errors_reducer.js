@@ -6,7 +6,7 @@ import {
   UPDATE_SPACE
 } from '../actions/spaces_actions';
 
-const spacesErrorsReducer = (state = {}, action) => {  
+const spacesErrorsReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_SPACE_ERRORS:
       return action.errors.responseJSON;

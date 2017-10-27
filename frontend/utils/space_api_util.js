@@ -9,7 +9,7 @@ export const createSpace = (space) => {
 export const updateSpace = (space) => {
   return $.ajax({
     method: "PATCH",
-    url: "api/spaces",
+    url: `api/spaces/${space.id}`,
     data: space
   });
 };

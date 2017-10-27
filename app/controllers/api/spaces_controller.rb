@@ -29,11 +29,17 @@ class Api::SpacesController < ApplicationController
   end
 
   def update
+    debugger
     @space = Space.find(params[:space][:id])
-    if @space.update(space_params);
-      render :show
+    admin_id = SpaceMembership.where(space_id: @space.id, is_admin: true).pluck(:user_id)
+    if admin_id.include?(current_user.id)
+      if @space.save(space_params);
+        render :show
+      else
+        render json @space.errors.full_messages, status: 422
+      end
     else
-      render json @space.errors.full_messages, status: 422
+      render json: ["You are not an admin for this space."], status: 403
     end
   end
 
