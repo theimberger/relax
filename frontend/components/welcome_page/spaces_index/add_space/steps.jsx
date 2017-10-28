@@ -29,7 +29,7 @@ export const three = (passInfoToParent, status, ...defaultValues) => (
     <input value={defaultValues[0]} onChange={(e) => passInfoToParent(e)}>
 
     </input>
-    <button>Send Invitations</button>
+    <button>All done, go to space</button>
 
   </form>
 );

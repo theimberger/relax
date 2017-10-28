@@ -4,6 +4,7 @@ class SpaceMembership < ApplicationRecord
   after_initialize :ensure_is_admin
   def ensure_is_admin
     self.is_admin = false if self.is_admin.nil?
+    self.is_pending = true if self.is_pending.nil?
   end
 
   belongs_to :user,

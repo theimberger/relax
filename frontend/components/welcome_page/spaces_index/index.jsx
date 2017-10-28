@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Index extends React.Component {
 
@@ -23,8 +24,10 @@ class Index extends React.Component {
 
     let spaces = Object.keys(this.props.spaces).map( (id) => (
       <li key={id}>
-        <span><h3>{this.props.spaces[id].title}</h3></span>
-        <button>Launch</button>
+        <Link to={`/spaces/${id}`}>
+          <span><h3>{this.props.spaces[id].title}</h3></span>
+          <button>Launch</button>
+        </Link>
       </li>
     ));
 

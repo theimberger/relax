@@ -67,3 +67,9 @@ button {
 .errors {
 	color: red;
 }
+
+a {
+	color: inherit;
+	text-decoration: none;
+	font-size: inherit;
+}

@@ -30,6 +30,15 @@
   border-radius: 5px;
 }
 
+.si_main a {
+  cursor: pointer;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
 .si_main p, .si_main h3 {
   font-size: 1em;
 }
