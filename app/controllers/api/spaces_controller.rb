@@ -19,7 +19,6 @@ class Api::SpacesController < ApplicationController
       })
 
       @channel.save!
-
       Membership.new({
         user_id: current_user.id,
         collection_id: @channel.id,
@@ -49,7 +48,7 @@ class Api::SpacesController < ApplicationController
       #but are still members
       membership.is_pending = false
       membership.save
-      @space = Space.find(membership.space_id)
+      @space = Space.find(membership.collection_id)
       @members = @space.users
       render :show
     end

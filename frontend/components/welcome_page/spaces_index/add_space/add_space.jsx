@@ -1,6 +1,8 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import Nav from '../nav';
-import * as Steps from './steps'
+import * as Steps from './steps';
+
 class AddSpace extends React.Component {
 
   constructor(props) {
@@ -10,11 +12,16 @@ class AddSpace extends React.Component {
       step: 1,
       title: "",
       description: "",
+      invites: [""],
       warning: "",
       stepState: "listening"
     };
 
     this.update = this.update.bind(this);
+  }
+
+  navigateToSpaceShow() {
+    this.props.history.push(`/spaces/${this.state.space.id}`);
   }
 
   update(e) {
@@ -80,6 +87,50 @@ class AddSpace extends React.Component {
           }
           break;
 
+        case 3:
+          switch(e.type) {
+            case "submit":
+              if (newState.invites[newState.invites.length - 1] !== ""){
+                newState.invites.push("");
+              }
+              this.setState(newState,
+                () => {
+                  let inputs = document.getElementsByTagName('input');
+                  inputs[inputs.length - 1].focus();
+                }
+              );
+              break;
+            case "change":
+              let idx = e.currentTarget.attributes.idx.value;
+              newState.invites[idx] = e.currentTarget.value;
+              break;
+            case "click":
+
+              newState.status = "pending";
+              if (newState.invites.length === 1 && newState.invites[0] === "") {
+                this.navigateToSpaceShow();
+              }
+
+              newState.invites.forEach((invite) => {
+                if (invite !== ""){
+                  this.props.inviteMember({membership:{
+                    collection_id: newState.space.id,
+                    collection_type: "Space",
+                    username: invite
+                  }}).then(
+                    () => {
+                      this.navigateToSpaceShow();
+                    }
+                  );
+                }
+
+              });
+              break;
+            default:
+              break;
+            }
+            break;
+
         default:
           break;
     }
@@ -87,23 +138,26 @@ class AddSpace extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     let form;
     let errors;
+
     switch (this.state.step) {
       case 1:
         form = Steps.one(this.update, this.state.status, this.state.title);
         break;
       case 2:
-        let buttonText = "Next";
-        if (this.state.description === "") {
-          buttonText = "Skip";
-        }
         form = Steps.two(
           this.update,
           this.state.status,
-          this.state.description,
-          buttonText
+          this.state.description
+        );
+        break;
+      case 3:
+        form = Steps.three(
+          this.update,
+          this.state.status,
+          this.state.invites,
+          this.state.space.title
         );
         break;
       default:
@@ -111,7 +165,8 @@ class AddSpace extends React.Component {
     }
 
     if (this.state.warning !== "") {
-      errors = <div className="errors" style={{"fontSize": "2em", "textAlign": "center"}}>
+      errors = <div className="errors"
+        style={{"fontSize": "2em", "textAlign": "center"}}>
         <br/>{this.state.warning}
       </div>;
     }
@@ -126,4 +181,4 @@ class AddSpace extends React.Component {
   }
 }
 
-export default AddSpace;
+export default withRouter(AddSpace);

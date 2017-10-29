@@ -13,10 +13,10 @@
 #
 
 class Membership < ApplicationRecord
-  validates :user_id, :collection_id, :is_admin, presence: true
+  validates :user_id, :collection_id, presence: true
 
-  after_initialize :ensure_is_admin
-  def ensure_is_admin
+  after_initialize :ensure_options
+  def ensure_options
     self.is_admin = false if self.is_admin.nil?
     self.is_pending = true if self.is_pending.nil?
   end
@@ -29,5 +29,5 @@ class Membership < ApplicationRecord
 
   # having trouble with collection associations?
   # -- make sure you're using type :Spaces and :Channel
-  
+
 end

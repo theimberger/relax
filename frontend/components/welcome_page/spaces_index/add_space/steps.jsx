@@ -10,26 +10,53 @@ export const one = (passInfoToParent, status, defaultValue) => (
   </form>
 );
 
-export const two = (passInfoToParent, status, ...defaultValues) => (
-  <form className={status} onSubmit={ (e) => passInfoToParent(e) }>
+export const two = (passInfoToParent, status, defaultValue) => {
 
-    <label>Give your space a description (optional).</label>
-    <textarea defaultValue={defaultValues[0]} onChange={(e) => passInfoToParent(e)}>
+  let buttonText = "Next";
+  if (defaultValue === "") {
+    buttonText = "Skip";
+  }
 
-    </textarea>
-    <button>{defaultValues[1]}</button>
+  return (
+    <form className={status} onSubmit={ (e) => passInfoToParent(e) }>
 
-  </form>
-);
+      <label>Give your space a description (optional).</label>
+      <textarea defaultValue={defaultValue}
+        onChange={(e) => passInfoToParent(e)}></textarea>
 
-export const three = (passInfoToParent, status, ...defaultValues) => (
-  <form className={status} onSubmit={ (e) => passInfoToParent(e) }>
+      <button>{buttonText}</button>
 
-    <label>Invite some buddies (optional).</label>
-    <input value={defaultValues[0]} onChange={(e) => passInfoToParent(e)}>
+    </form>
+  );
+};
 
-    </input>
-    <button>All done, go to space</button>
+export const three = (passInfoToParent, status, ...defaultValues) => {
+  let buttonText = "Invite";
+  if (defaultValues[0][0] === "") {
+    buttonText = "Skip";
+  }
 
-  </form>
-);
+  let friends = defaultValues[0].map((friend, idx) => {
+    return (
+        <input
+          value={friend}
+          key={idx} idx={idx}
+          onChange={(e) => passInfoToParent(e)}
+        />
+    );
+  });
+  return (
+    <form className={status}
+      onSubmit={ (e) => passInfoToParent(e) }>
+
+      <label>Send Invitations (optional).</label>
+      <h3>Username</h3>
+      {friends}
+      <button type="submit" hidden></button>
+      <button type="button" onClick={ (e) => passInfoToParent(e)}>
+        {buttonText} and go to {defaultValues[1]}
+      </button>
+
+    </form>
+  );
+};
