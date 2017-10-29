@@ -6,7 +6,20 @@ class Api::MembershipsController < ApplicationController
     else
       membership = Membership.new(membership_params)
       membership.save!
-      debugger
+      if membership.collection_type == "Space"
+        #if this is a new membership to a space, the user
+        #should also be added to the space's general channel
+        channel_membership = {}
+        channel_membership[:user_id] = membership.user_id
+        channel_membership[:collection_type] = :Channel
+        space = Space.find(membership.collection_id)
+        channel_membership[:collection_id] = space.channels.first.id
+        channel_membership[:is_pending] = false
+        channel_membership[:is_admin] = false
+        Membership.new(channel_membership).save!
+      end
+
+      #no page really for this action - we just want to know if we succeeded.
       render json: ["membership processed"], status: 200
     end
   end
