@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: spaces
+#
+#  id          :integer          not null, primary key
+#  title       :string           not null
+#  description :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Space < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 

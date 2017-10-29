@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer          not null
+#  collection_id   :integer          not null
+#  is_admin        :boolean          default(FALSE)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  is_pending      :boolean          default(TRUE)
+#  collection_type :string           not null
+#
+
 class Membership < ApplicationRecord
   validates :user_id, :collection_id, :is_admin, presence: true
 

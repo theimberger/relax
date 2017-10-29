@@ -12,6 +12,22 @@ class Api::SpacesController < ApplicationController
         is_pending: false
       }).save!
 
+      @channel = Channel.new({
+        title: "General",
+        space_id: @space.id,
+        purpose: "A channel for general discussion"
+      })
+
+      @channel.save!
+
+      Membership.new({
+        user_id: current_user.id,
+        collection_id: @channel.id,
+        collection_type: :Channel,
+        is_admin: true,
+        is_pending: false
+      }).save!
+
       render :show
     else
       render json: @space.errors.full_messages, status: 422
@@ -48,7 +64,7 @@ class Api::SpacesController < ApplicationController
     @space = Space.find(params[:space][:id])
     admin_id = Membership.where(collection_id: @space.id, collection_type: :Space, is_admin: true).pluck(:user_id)
     if admin_id.include?(current_user.id)
-      if @space.save(space_params);
+      if @space.update(space_params);
         render :show
       else
         render json @space.errors.full_messages, status: 422
@@ -63,6 +79,6 @@ class Api::SpacesController < ApplicationController
 
   private
   def space_params
-    params.require(:space).permit(:title, :description)
+    params.require(:space).permit(:id, :title, :description)
   end
 end
