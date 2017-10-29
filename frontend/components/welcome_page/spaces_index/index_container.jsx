@@ -6,7 +6,7 @@ import { requestUserSpaces } from '../../../actions/spaces_actions';
 const mapStateToProps = state => (
   {
     currentUser: state.session.currentUser,
-    spaces: state.spaces,
+    spaces: state.entities.spaces,
     errors: state.errors.spaces
   }
 );

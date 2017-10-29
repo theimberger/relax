@@ -1,7 +1,6 @@
 class Api::SpacesController < ApplicationController
 
   before_action :ensure_logged_in
-
   def create
     @space = Space.new(space_params)
     if @space.save
@@ -24,13 +23,14 @@ class Api::SpacesController < ApplicationController
       space_id: params[:id],
       user_id: current_user.id
     )
-    if membership.length == 0
+    if membership.nil?
       render json: ["Either this space doesn't exist or you don't have permission to view it."], status: 403
     else
-      membership = membership.first
+      # membership = membership.first
       #in case a user visits a website they have not accepted an invite too
       #but are still members
       membership.is_pending = false
+      membership.save
       @space = Space.find(membership.space_id)
       @members = @space.users
       render :show

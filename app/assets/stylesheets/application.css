@@ -14,5 +14,6 @@
  *= require './main'
  *= require './welcome_page'
  *= require './spaces_index.css'
+ *= require './space_show.css'
  *= require_self
  */

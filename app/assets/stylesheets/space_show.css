@@ -1,0 +1,18 @@
+.space_left_nav {
+  width: 200px;
+  background: #4d394b;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  color: #ccc;
+}
+.space_left_nav h3 {
+  padding: 10px;
+  font-weight: 100;
+}
+h4 {
+  color: white;
+  font-size: 1.6em;
+  font-weight: 700;
+  padding: 10px;
+}
