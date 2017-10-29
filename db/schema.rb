@@ -10,19 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027231240) do
+ActiveRecord::Schema.define(version: 20171029144426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "space_memberships", force: :cascade do |t|
+  create_table "channels", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "topic"
+    t.string "purpose"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "space_id", null: false
+    t.integer "collection_id", null: false
     t.boolean "is_admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_pending", default: true
-    t.index ["user_id", "space_id"], name: "index_space_memberships_on_user_id_and_space_id"
+    t.string "collection_type", null: false
+    t.index ["user_id", "collection_id"], name: "index_memberships_on_user_id_and_collection_id"
   end
 
   create_table "spaces", force: :cascade do |t|

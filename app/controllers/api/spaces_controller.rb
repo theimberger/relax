@@ -4,9 +4,10 @@ class Api::SpacesController < ApplicationController
   def create
     @space = Space.new(space_params)
     if @space.save
-      SpaceMembership.new({
+      Membership.new({
         user_id: current_user.id,
-        space_id: @space.id,
+        collection_id: @space.id,
+        collection_type: :Space,
         is_admin: true,
         is_pending: false
       }).save!
@@ -19,8 +20,9 @@ class Api::SpacesController < ApplicationController
 
   def show
     #check to make sure user is a member
-    membership = SpaceMembership.find_by(
-      space_id: params[:id],
+    membership = Membership.find_by(
+      collection_id: params[:id],
+      collection_type: :Space,
       user_id: current_user.id
     )
     if membership.nil?
@@ -44,7 +46,7 @@ class Api::SpacesController < ApplicationController
 
   def update
     @space = Space.find(params[:space][:id])
-    admin_id = SpaceMembership.where(space_id: @space.id, is_admin: true).pluck(:user_id)
+    admin_id = Membership.where(collection_id: @space.id, collection_type: :Space, is_admin: true).pluck(:user_id)
     if admin_id.include?(current_user.id)
       if @space.save(space_params);
         render :show

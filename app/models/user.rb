@@ -4,13 +4,19 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8, allow_nil: true }
 
   # associatations
-  has_many :space_memberships,
-    class_name: :SpaceMembership,
+  has_many :memberships,
+    class_name: :Membership,
     foreign_key: :user_id
 
   has_many :spaces,
-    through: :space_memberships,
-    source: :space
+    through: :memberships,
+    source: :collection,
+    source_type: :Space
+
+  has_many :channels,
+    through: :memberships,
+    source: :collection,
+    source_type: :Channel
 
   # auth methods
   after_initialize :ensure_session_token
