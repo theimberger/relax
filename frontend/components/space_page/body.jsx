@@ -16,7 +16,7 @@ class Body extends React.Component {
     this.props.getSpace(this.props.match.params["id"]).then(
       (space) => {
         newState["status"] = "loaded";
-        newState["space"] = space["space"];
+        newState["space"] = space.space.space;
         this.setState(newState);
       },
       (errors) => {

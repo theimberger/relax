@@ -49,6 +49,7 @@ class Api::SpacesController < ApplicationController
       membership.is_pending = false
       membership.save
       @space = Space.find(membership.collection_id)
+      @channels = @space.channels
       @members = @space.users
       render :show
     end

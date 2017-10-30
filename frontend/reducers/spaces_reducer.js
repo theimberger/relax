@@ -14,12 +14,16 @@ const spacesReducer = (state = {}, action) => {
         newState[space.id] = space;
       });
       return newState;
+    case RECEIVE_SINGLE_SPACE:
+      newState = Object.assign({}, state);
+      newState[action.space.space.id] = action.space.space;
+      return newState;
     case CREATE_SPACE:
     case UPDATE_SPACE:
       newState = Object.assign({}, state);
       newState[action.space.id] = action.space;
       return newState;
-      
+
     case RECEIVE_SPACE_ERRORS:
     default:
       return state;

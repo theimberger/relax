@@ -148,6 +148,14 @@
   height: 100%;
 }
 
+.add_space h3 {
+  text-align: left;
+  font-style: 1.5em;
+  align-self: flex-start;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
 .failed input {
   -webkit-transition:color 0.25s; /* Safari */
   transition: color 0.25s;
