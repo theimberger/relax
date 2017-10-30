@@ -5,7 +5,7 @@ footer, header, nav, section {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 14px;
+	font-size: 16px;
 	font-family: 'Quicksand', sans-serif;
 	vertical-align: baseline;
 	-webkit-transition: color 1s, border 1s; /* Safari */

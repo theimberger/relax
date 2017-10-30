@@ -40,7 +40,7 @@ class AddSpace extends React.Component {
               newState.status = "pending";
               this.props.postSpace({space: {title: newState.title}}).then(
                 (action) => {
-                  newState.space = action.space.space;
+                  newState.space = action.space;
                   newState.step += 1;
                   this.setState(newState);
                 },
@@ -68,7 +68,7 @@ class AddSpace extends React.Component {
               newState.space["description"] = newState.description;
               this.props.updateSpace({space: newState.space}).then(
                 (action) => {
-                  newState.space = action.space.space;
+                  newState.space = action.space;
                   newState.step += 1;
                   this.setState(newState);
                 },
