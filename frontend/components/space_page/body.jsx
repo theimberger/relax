@@ -8,7 +8,9 @@ class Body extends React.Component {
 
   constructor() {
     super();
-    this.state = { status: "pending" };
+    this.state = {
+      status: "pending"
+    };
   }
 
   componentDidMount() {
@@ -17,6 +19,7 @@ class Body extends React.Component {
       (space) => {
         newState["status"] = "loaded";
         newState["space"] = space.space;
+        newState["activeChannel"] = newState.space.channels[0];
         this.setState(newState);
       },
       (errors) => {
@@ -39,21 +42,17 @@ class Body extends React.Component {
       );
     }
     return (
-      <LeftNav
-        space={this.state.space}
-        user={this.props.user}
-      />
+      <div className="show_main">
+        <LeftNav
+          activeChannel={this.state.activeChannel}
+          space={this.state.space}
+          user={this.props.user}
+        />
+        <Header activeChannel = {this.state.activeChannel} />
+      </div>
     );
   }
 
 }
-
-//   const Body = (space) => (
-//   <div className="space_page">
-//     <LeftNav />
-//     <Header />
-//     <Main />
-//   </div>
-// );
 
 export default Body;

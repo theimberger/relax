@@ -8,3 +8,4 @@ end
 json.set! :users do
   json.array! @members, partial: 'api/users/user', as: :user
 end
+json.userIsAdmin @is_admin

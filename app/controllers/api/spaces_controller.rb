@@ -13,7 +13,7 @@ class Api::SpacesController < ApplicationController
       }).save!
 
       @channel = Channel.new({
-        title: "General",
+        title: "general",
         space_id: @space.id,
         purpose: "A channel for general discussion"
       })
@@ -48,6 +48,10 @@ class Api::SpacesController < ApplicationController
       #but are still members
       membership.is_pending = false
       membership.save
+      # also, let's pass down whether the user is an admin
+      @is_admin = membership.is_admin
+
+      #space info
       @space = Space.find(membership.collection_id)
       @channels = @space.channels
       @members = @space.users

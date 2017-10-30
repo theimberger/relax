@@ -1,9 +1,18 @@
 import React from 'react';
 
-const Main = () => (
-  <div className="space_main">
-    <h3>Channel Name</h3>
-  </div>
-);
+const Header = (props) => {
+  console.log(props);
+  return (
+    <header className="space_header">
+      <section>
+        <h4>#{props.activeChannel.title}</h4>
+        <h5>Users</h5>
+      </section>
+      <section>
+        Some stuff...
+      </section>
+    </header>
+  );
+};
 
-export default Main;
+export default Header;

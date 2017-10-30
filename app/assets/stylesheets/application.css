@@ -11,9 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require font-awesome
  *= require './main'
  *= require './welcome_page'
  *= require './spaces_index.css'
- *= require './space_show.css'
+ *= require './space_show.scss'
+ *= require './add_channel_form.scss'
  *= require_self
  */
