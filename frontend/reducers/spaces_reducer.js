@@ -25,6 +25,8 @@ const spacesReducer = (state = {}, action) => {
       return newState;
 
     case RECEIVE_SPACE_ERRORS:
+      return state;
+      
     default:
       return state;
   }
