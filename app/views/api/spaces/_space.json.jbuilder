@@ -1,1 +1,1 @@
-json.extract! space, :id, :title, :description
+json.extract! space, :id, :title, :description, :is_pending

@@ -20,16 +20,25 @@ class Index extends React.Component {
     this.props.history.push('/my_spaces/add');
   }
 
+  navigateToJoin() {
+    this.props.history.push('/my_spaces/join');
+  }
+
   render() {
 
-    let spaces = Object.keys(this.props.spaces).map( (id) => (
-      <li key={id}>
-        <Link to={`/spaces/${id}`}>
-          <span><h3>{this.props.spaces[id].title}</h3></span>
-          <button>Launch</button>
-        </Link>
-      </li>
-    ));
+    let spaces = Object.keys(this.props.spaces).map( (id) => {
+      if (this.props.spaces[id].is_pending) {
+        return;
+      }
+      return (
+        <li key={id}>
+          <Link to={`/spaces/${id}`}>
+            <span><h3>{this.props.spaces[id].title}</h3></span>
+            <button>Launch</button>
+          </Link>
+        </li>
+      );
+    });
 
     let joinedSpaces;
     if (spaces.length === 1) {
@@ -42,7 +51,7 @@ class Index extends React.Component {
       <div>
         <h2>Start with a space</h2>
         <ul className="si_form_links">
-          <li>
+          <li onClick={ () => this.navigateToJoin() }>
             <span>
               <h3>Find your relaxing space</h3>
               <br/> Join or sign into an existing space

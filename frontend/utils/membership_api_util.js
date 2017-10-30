@@ -6,9 +6,10 @@ export const createMembership = membership => {
   });
 };
 
-export const destroyMembership = id => {
+export const destroyMembership = ids => {
   return $.ajax({
     method: "DELETE",
-    url: `api/memberships/${id}`
+    url: "api/memberships",
+    data: ids
   });
 };

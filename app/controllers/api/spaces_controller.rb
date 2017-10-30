@@ -61,6 +61,8 @@ class Api::SpacesController < ApplicationController
 
   def index
     @spaces = current_user.spaces
+      .joins(:memberships)
+      .select('spaces.*, memberships.is_pending')
     render json: @spaces
   end
 
