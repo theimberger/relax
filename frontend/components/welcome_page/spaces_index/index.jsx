@@ -28,7 +28,7 @@ class Index extends React.Component {
 
     let spaces = Object.keys(this.props.spaces).map( (id) => {
       if (this.props.spaces[id].is_pending) {
-        return;
+        return null;
       }
       return (
         <li key={id}>
@@ -39,6 +39,15 @@ class Index extends React.Component {
         </li>
       );
     });
+
+    spaces = spaces.filter((element) => {
+      if (element === null) {
+        return false;
+      }
+      return true;
+    });
+
+    debugger
 
     let joinedSpaces;
     if (spaces.length === 1) {

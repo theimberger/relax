@@ -5,7 +5,22 @@ export class AddChannel extends React.Component {
   render() {
 
     return (
-      <div className="add_channel_form">
+      <div className="add_channel_form indirect"
+        onKeyDown={
+          (e) => {
+            console.log(e);
+            if (e.keyCode === 27) {
+              this.closeForm();
+            }
+          }
+        }
+        tabIndex="0">
+        
+        <div className="close_form"
+          onClick={ () => this.closeForm() }>
+          <span>✕</span>
+          <br/> esc
+        </div>
         <h1>Create a channel</h1>
         <form>
 
@@ -28,6 +43,11 @@ export class AddChannel extends React.Component {
 
 export class AddDirect extends React.Component {
 
+  closeForm() {
+    let form = document.getElementsByClassName('direct')[0];
+    form.style.display = "none";
+  }
+
   render() {
     let spaceUsers = this.props.space.users.map((user) => {
       return (
@@ -37,9 +57,19 @@ export class AddDirect extends React.Component {
       );
     });
     return (
-      <div className="add_channel_form">
-        <div className="close_form">
-          <span>x</span>
+      <div className="add_channel_form direct"
+        onKeyDown={
+          (e) => {
+            console.log(e);
+            if (e.keyCode === 27) {
+              this.closeForm();
+            }
+          }
+        }
+        tabIndex="0">
+        <div className="close_form"
+          onClick={ () => this.closeForm() }>
+          <span>✕</span>
           <br/> esc
         </div>
         <h1>Direct Messages</h1>

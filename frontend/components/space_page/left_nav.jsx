@@ -12,19 +12,18 @@ class LeftNav extends React.Component {
   }
 
   openForm(type) {
-    let newState = this.state;
-    newState.form = <AddChannel />;
-    if (type === "addDirect") {
-      newState.form = <AddDirect />;
-    }
-    this.setState(newState);
+    let form = document.getElementsByClassName(type);
+    console.log(form);
+    form = form[0];
+    form.style.display = "flex";
+    form.focus();
   }
 
   render() {
     let addChannel;
     if (this.props.space.userIsAdmin) {
       addChannel = <i className="fa fa-plus-circle"
-        onClick={() => this.openForm("addChannel")}
+        onClick={() => this.openForm("indirect")}
         aria-hidden="true"></i>;
     }
 
@@ -50,15 +49,29 @@ class LeftNav extends React.Component {
           active = "active";
         }
 
+        if (channel.title === this.props.user.username) {
+          return (
+            <li key={idx} className={active}>
+                <span className="status_circle"></span>
+                {channel.title}
+                <span style={{color: "#777"}}> (you) </span>
+              <i className="fa fa-times-circle" aria-hidden="true"
+                onClick={() => this.openForm("addChannel")}></i>
+            </li>
+          );
+        }
+
         return (
           <li key={idx} className={active}>
-            # {channel.title}
+              <span className="status_circle"></span>
+              {channel.title}
             <i className="fa fa-times-circle" aria-hidden="true"
               onClick={() => this.openForm("addChannel")}></i>
           </li>
         );
       }
     });
+
     return(
       <div className="space_left_nav">
 
@@ -78,12 +91,13 @@ class LeftNav extends React.Component {
         <h3>
           Direct Messages
           <i className="fa fa-plus-circle" aria-hidden="true"
-            onClick={() => this.openForm("addDirect")}></i>
+            onClick={() => this.openForm("direct")}></i>
         </h3>
         <ul>
           {directs}
         </ul>
-        {this.state.form}
+        <AddChannel />
+        <AddDirect />
       </div>
     );
   }
