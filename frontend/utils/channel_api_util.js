@@ -6,17 +6,17 @@ export const createChannel = (spaceId, channel) => {
   });
 };
 
-export const deleteChannel = (spaceId, channel) => {
+export const deleteChannel = id => {
   return $.ajax({
     method: "DELETE",
-    url: `api/spaces/${spaceId}/channels/${channel.id}`
+    url: `api/channels/${id}`
   });
 };
 
-export const updateChannel = (spaceId, channel) => {
+export const updateChannel = channel => {
   return $.ajax({
     method: "PATCH",
-    url: `api/spaces/${spaceId}/channels/${channel.id}`,
+    url: `api/channels/${channel.id}`,
     data: channel
   });
 };

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import * as ChannelForms from './add_channel';
 import { createMembership } from '../../utils/membership_api_util';
+import { createChannel } from '../../utils/channel_api_util';
 import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, ownProps) => {
@@ -11,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  inviteMember: (id) => createMembership(id)
+  inviteMember: (membership) => createMembership(membership),
+  createChannel: (id, channel) => createChannel(id, channel)
 });
 
 export const AddChannel = withRouter(connect(mapStateToProps,

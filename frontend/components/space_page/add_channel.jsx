@@ -65,10 +65,17 @@ export class AddDirect extends React.Component {
     this.setState(newState);
   }
 
-  submitForm(e) {
-
-    this.updateFilter({currentTarget: {value: ""}});
-    this.closeForm();
+  submitForm(user) {
+    console.log('submitted');
+    this.props.createChannel(this.props.space.id,
+      {
+        channel: {
+          is_direct: true,
+          user: user.id
+        }
+      });
+    // this.updateFilter({currentTarget: {value: ""}});
+    // this.closeForm();
   }
 
   render() {
@@ -87,7 +94,7 @@ export class AddDirect extends React.Component {
       let element;
       if (user.username === this.state.filter) {
         button = <button
-          onSubmit={ e => this.submitForm(e) }>Go</button>;
+          onClick={ () => this.submitForm(user) }>Go</button>;
       }
       if (name.toLowerCase() === this.state.filter.toLowerCase()){
         element = <li key={user.id}

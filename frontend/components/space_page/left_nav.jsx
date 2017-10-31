@@ -61,16 +61,21 @@ class LeftNav extends React.Component {
           );
         }
 
+        let title = channel.users.filter(
+          (user) => user.id !== this.props.user.id );
+
+        title = title[0].username;
+
         return (
           <li key={idx} className={active}>
               <span className="status_circle"></span>
-              {channel.title}
+              {title}
             <i className="fa fa-times-circle" aria-hidden="true"
               onClick={() => this.openForm("addChannel")}></i>
           </li>
         );
       }
-    });
+    }, this);
 
     return(
       <div className="space_left_nav">
@@ -96,8 +101,8 @@ class LeftNav extends React.Component {
         <ul>
           {directs}
         </ul>
-        <AddChannel />
-        <AddDirect />
+        <AddChannel space={this.state.space} />
+        <AddDirect space={this.state.space} />
       </div>
     );
   }
