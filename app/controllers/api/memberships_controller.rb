@@ -17,6 +17,16 @@ class Api::MembershipsController < ApplicationController
         channel_membership[:is_pending] = false
         channel_membership[:is_admin] = false
         Membership.new(channel_membership).save!
+        self_direct = Channel.new({
+          title: User.find(channel_membership[:user_id]).username,
+          space_id: space.id,
+          purpose: "",
+          is_direct: true
+        })
+        self_direct.save!
+        channel_membership[:is_admin] = true
+        channel_membership[:collection_id] = self_direct.id
+        Membership.new(channel_membership).save!
       end
 
       #no page really for this action - we just want to know if we succeeded.

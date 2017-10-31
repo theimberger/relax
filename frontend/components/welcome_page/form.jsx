@@ -32,7 +32,7 @@ class WelcomeForm extends React.Component {
     } else if (e.currentTarget.innerHTML === "Log In") {
       this.props.login(this.state).then(() => this.navigateToSpaceIndex());
     } else {
-      this.props.login({username: "demo", "password": "password1"}).then(
+      this.props.login({username: "Demo", "password": "password1"}).then(
         () => this.navigateToSpaceIndex()
       );
     }

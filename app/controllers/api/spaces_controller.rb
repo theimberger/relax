@@ -4,6 +4,11 @@ class Api::SpacesController < ApplicationController
   def create
     @space = Space.new(space_params)
     if @space.save
+
+      #upon space save we create new membership instances for the current user
+      #and new space, as well as two channesl - a general and a direct
+      #message channel for the user with themself
+
       Membership.new({
         user_id: current_user.id,
         collection_id: @space.id,
@@ -12,20 +17,37 @@ class Api::SpacesController < ApplicationController
         is_pending: false
       }).save!
 
-      @channel = Channel.new({
+      channel = Channel.new({
         title: "general",
         space_id: @space.id,
         purpose: "A channel for general discussion"
       })
 
-      @channel.save!
+      self_direct = Channel.new({
+        title: current_user.username,
+        space_id: @space.id,
+        purpose: "",
+        is_direct: true
+      })
+
+      channel.save!
+      self_direct.save!
+
       Membership.new({
         user_id: current_user.id,
-        collection_id: @channel.id,
+        collection_id: channel.id,
         collection_type: :Channel,
         is_admin: true,
         is_pending: false
       }).save!
+
+      Membership.new({
+        user_id: current_user.id,
+        collection_id: self_direct.id,
+        collection_type: :Channel,
+        is_admin: true,
+        is_pending: false
+        }).save!
 
       render :show
     else
@@ -54,7 +76,8 @@ class Api::SpacesController < ApplicationController
       #space info
       @space = Space.find(membership.collection_id)
       @channels = @space.channels
-      @members = @space.users
+      @channels = @channels.select { |channel| channel.users.include?(current_user) }
+      @members = @space.users.joins(:memberships).select('users.*').where('memberships.is_pending = FALSE').uniq
       render :show
     end
   end
