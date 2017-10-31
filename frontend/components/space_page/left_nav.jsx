@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddChannel, AddDirect } from "./add_channel";
+import { AddChannel, AddDirect } from "./add_channel_container";
 
 class LeftNav extends React.Component {
 
