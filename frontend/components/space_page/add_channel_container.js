@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import * as ChannelForms from './add_channel';
+import AC from './add_channel';
+import AD from './add_direct';
 import { createMembership } from '../../utils/membership_api_util';
 import { createChannel } from '../../utils/channel_api_util';
 import { withRouter } from 'react-router';
@@ -17,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export const AddChannel = withRouter(connect(mapStateToProps,
-  mapDispatchToProps)(ChannelForms.AddChannel));
+  mapDispatchToProps)(AC));
 
 export const AddDirect = withRouter(connect(mapStateToProps,
-  mapDispatchToProps)(ChannelForms.AddDirect));
+  mapDispatchToProps)(AD));

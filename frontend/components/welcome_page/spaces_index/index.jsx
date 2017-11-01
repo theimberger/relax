@@ -47,7 +47,6 @@ class Index extends React.Component {
       return true;
     });
 
-    debugger
 
     let joinedSpaces;
     if (spaces.length === 1) {

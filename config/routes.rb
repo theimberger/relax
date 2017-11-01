@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
 
     resources :spaces, except: [:new, :edit] do
-      resources :channels, only: [:create]
+      resources :channels, only: [:create, :show, :index]
       resources :users, only: [:index, :show]
     end
 

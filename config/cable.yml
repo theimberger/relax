@@ -1,10 +1,18 @@
-development:
-  adapter: async
-
-test:
-  adapter: async
-
-production:
+redis: &redis
   adapter: redis
   url: redis://localhost:6379/1
-  channel_prefix: relax_production
+
+production: *redis
+development: *redis
+test: *redis
+
+# development:
+#   adapter: async
+#
+# test:
+#   adapter: async
+# 
+# production:
+#   adapter: redis
+#   url: redis://localhost:6379/1
+#   channel_prefix: relax_production
