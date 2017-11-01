@@ -84,16 +84,21 @@
 }
 
 .indirect {
-  position: relative;
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   h1 {
-    margin: 100px auto;
-    width: 100%;
-    display: block;
+    margin-top: 10%;
+    width: 50%;
+    max-width: 600px;
   }
   form {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 15%;
+    max-width: 600px;
+    label {
+      display: block;
+      margin-top: 30px;
+    }
   }
 
 }

@@ -31,4 +31,6 @@ class Channel < ApplicationRecord
     through: :memberships,
     source: :user
 
+    has_many :messages, as: :collection
+    
 end
