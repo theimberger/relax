@@ -1,11 +1,22 @@
 import React from 'react';
 
 const Header = (props) => {
-  console.log(props);
+  let channelTitle = props.activeChannel.title;
+  if (props.activeChannel.is_direct
+    && props.activeChannel.title !== props.user.username) {
+    channelTitle = props.activeChannel.users.filter(
+      (user) => user.id !== props.user.id );
+    channelTitle = channelTitle[0].username;
+  }
+
+  if (!props.activeChannel.is_direct) {
+    channelTitle = `# ${channelTitle}`;
+  }
+
   return (
     <header className="space_header">
       <section>
-        <h4>#{props.activeChannel.title}</h4>
+        <h4>{channelTitle}</h4>
         <h5>Users</h5>
       </section>
       <section>

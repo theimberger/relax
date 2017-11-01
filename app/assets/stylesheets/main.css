@@ -9,8 +9,6 @@ footer, header, nav, section {
 	font-family: 'Quicksand', sans-serif;
 	font-weight: 400;
 	vertical-align: baseline;
-	-webkit-transition: color 1s, border 1s; /* Safari */
-  transition: color 1s, border 1s;
 	outline: none;
 }
 
@@ -63,6 +61,11 @@ button {
 	cursor: pointer;
 	-webkit-transition: background-color 1s, border 1s; /* Safari */
   transition: background-color 1s, border 1s;
+}
+
+input {
+	-webkit-transition: color 1s, border 1s; /* Safari */
+  transition: color 1s, border 1s;
 }
 
 .errors {

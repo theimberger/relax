@@ -35,7 +35,10 @@ class LeftNav extends React.Component {
         }
 
         return (
-          <li key={idx} className={active}>
+          <li key={idx}
+            className={active}
+            onClick={() => this.props.passChangeToParent({activeChannel: channel})
+            }>
             # {channel.title}
           </li>
         );
@@ -51,7 +54,12 @@ class LeftNav extends React.Component {
 
         if (channel.title === this.props.user.username) {
           return (
-            <li key={idx} className={active}>
+            <li key={idx}
+              className={active}
+              onClick={() => this.props.passChangeToParent(
+                {activeChannel: channel})
+              }>
+
                 <span className="status_circle"></span>
                 {channel.title}
                 <span style={{color: "#777"}}> (you) </span>
@@ -67,7 +75,10 @@ class LeftNav extends React.Component {
         title = title[0].username;
 
         return (
-          <li key={idx} className={active}>
+          <li key={idx} className={active}
+            onClick={() => this.props.passChangeToParent(
+              {activeChannel: channel})
+            }>
               <span className="status_circle"></span>
               {title}
             <i className="fa fa-times-circle" aria-hidden="true"
@@ -89,7 +100,7 @@ class LeftNav extends React.Component {
         </nav>
 
         <h3>Channels {addChannel}</h3>
-        <ul>
+        <ul className="channel_list">
           {channels}
         </ul>
 

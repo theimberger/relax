@@ -11,6 +11,8 @@ class Body extends React.Component {
     this.state = {
       status: "pending"
     };
+
+    this.update = this.update.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +32,11 @@ class Body extends React.Component {
     );
   }
 
+  update(data){
+    let newState = Object.assign({}, this.state, data);
+    this.setState(newState);
+  }
+
   render() {
     if (this.state.status === "pending") {
       return (
@@ -47,8 +54,10 @@ class Body extends React.Component {
           activeChannel={this.state.activeChannel}
           space={this.state.space}
           user={this.props.user}
+          passChangeToParent={this.update}
         />
-        <Header activeChannel = {this.state.activeChannel} />
+        <Header activeChannel = {this.state.activeChannel}
+          user= {this.props.user} />
       </div>
     );
   }
