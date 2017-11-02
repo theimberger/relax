@@ -1,10 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import LeftNav from './left_nav';
 import Header from './header';
-import Messages from './messages';
-import MessageInput from './message_input';
+import ChannelPage from './channel_page/body';
 import Sidebar from './sidebar';
+import {
+  Route,
+  Link,
+  HashRouter,
+  Redirect
+} from 'react-router-dom';
 
 class Body extends React.Component {
 
@@ -24,6 +28,9 @@ class Body extends React.Component {
         newState["status"] = "loaded";
         newState["space"] = space.space;
         newState["activeChannel"] = newState.space.channels[0];
+        this.props.history.push(
+          `/spaces/${newState.space.id}/channels/${newState.activeChannel.id}`
+        );
         this.setState(newState);
       },
       (errors) => {
@@ -61,14 +68,11 @@ class Body extends React.Component {
         />
         <Header activeChannel = {this.state.activeChannel}
           user= {this.props.user} />
+
+
         <div className="space_main">
-          <div className="messages_wrapper">
-            <Messages messages={this.state.activeChannel.messages}/>
-            <MessageInput
-              channel={this.state.activeChannel}
-              user={this.props.user}
-            />
-          </div>
+          <Route path="/spaces/:id/channels/:channel_id"
+            component={ChannelPage} />
           <Sidebar />
         </div>
 

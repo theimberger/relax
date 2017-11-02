@@ -6,6 +6,13 @@ export const createChannel = (spaceId, channel) => {
   });
 };
 
+export const getChannel = (id) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/channels/${id}`,
+  });
+};
+
 export const deleteChannel = id => {
   return $.ajax({
     method: "DELETE",

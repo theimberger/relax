@@ -18,11 +18,11 @@ const MessageInput = (props) => {
     <div className="message_input">
       <div className="input_wrapper">
         <div className="plus">+</div>
-          <form>
+          {/* <form> */}
             <input
               placeholder={`Message ${channelTitle}`}
               data-behavior="chat_speaker" />
-          </form>
+          {/* </form> */}
         <div className="input_extras"></div>
       </div>
     </div>

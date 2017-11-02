@@ -70,4 +70,21 @@
     }
   }
 
+  .message_list {
+    position: absolute;
+    bottom: 82px;
+    top: 0px;
+    align-items: baseline;
+    overflow: scroll;
+
+    li:last-child {
+
+    }
+
+    .message_spacer {
+      height: 80px;
+      width: 100%;
+    }
+  }
+
 }

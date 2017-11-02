@@ -34,6 +34,8 @@ class Api::ChannelsController < ApplicationController
 
   def show
     @messages = Message.all
+    @channel = Channel.find(params[:id])
+    render "api/spaces/channels/show"
   end
 
 

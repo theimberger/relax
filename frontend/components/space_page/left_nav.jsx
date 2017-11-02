@@ -1,5 +1,7 @@
 import React from 'react';
 import { AddChannel, AddDirect } from "./add_channel_container";
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class LeftNav extends React.Component {
 
@@ -29,18 +31,23 @@ class LeftNav extends React.Component {
 
     let channels = this.props.space.channels.map((channel, idx) => {
       if (channel.is_direct === false) {
-        let active = "";
+
         if (channel === this.props.activeChannel) {
-          active = "active";
+          return (
+            <li className="active" key={idx}>
+              # {channel.title}
+            </li>
+          );
         }
 
         return (
-          <li key={idx}
-            className={active}
-            onClick={() => this.props.passChangeToParent({activeChannel: channel})
-            }>
-            # {channel.title}
-          </li>
+          <Link key={idx}
+            to={`/spaces/${this.props.space.id}/channels/${channel.id}`}>
+            <li onClick={
+              () => this.props.passChangeToParent({activeChannel: channel})}>
+              # {channel.title}
+            </li>
+          </Link>
         );
       }
     });
@@ -54,18 +61,20 @@ class LeftNav extends React.Component {
 
         if (channel.title === this.props.user.username) {
           return (
-            <li key={idx}
-              className={active}
-              onClick={() => this.props.passChangeToParent(
-                {activeChannel: channel})
-              }>
+            <Link key={idx}
+              to={`/spaces/${this.props.space.id}/channels/${channel.id}`}>
+              <li className={active}
+                onClick={() => this.props.passChangeToParent(
+                  {activeChannel: channel})
+                }>
 
-                <span className="status_circle"></span>
-                {channel.title}
-                <span style={{color: "#777"}}> (you) </span>
-              <i className="fa fa-times-circle" aria-hidden="true"
-                onClick={() => this.openForm("addChannel")}></i>
-            </li>
+                  <span className="status_circle"></span>
+                  {channel.title}
+                  <span style={{color: "#777"}}> (you) </span>
+                <i className="fa fa-times-circle" aria-hidden="true"
+                  onClick={() => this.openForm("addChannel")}></i>
+              </li>
+            </Link>
           );
         }
 
@@ -75,15 +84,18 @@ class LeftNav extends React.Component {
         title = title[0].username;
 
         return (
-          <li key={idx} className={active}
-            onClick={() => this.props.passChangeToParent(
-              {activeChannel: channel})
-            }>
-              <span className="status_circle"></span>
-              {title}
-            <i className="fa fa-times-circle" aria-hidden="true"
-              onClick={() => this.openForm("addChannel")}></i>
-          </li>
+          <Link key={idx}
+            to={`/spaces/${this.props.space.id}/channels/${channel.id}`}>
+            <li className={active}
+              onClick={() => this.props.passChangeToParent(
+                {activeChannel: channel})
+              }>
+                <span className="status_circle"></span>
+                {title}
+              <i className="fa fa-times-circle" aria-hidden="true"
+                onClick={() => this.openForm("addChannel")}></i>
+            </li>
+          </Link>
         );
       }
     }, this);
@@ -118,4 +130,4 @@ class LeftNav extends React.Component {
     );
   }
 }
-export default LeftNav;
+export default withRouter(LeftNav);

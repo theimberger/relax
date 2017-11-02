@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show]
     end
 
-    resources :channels, only: [:update, :destroy]
+    resources :channels, only: [:show, :update, :destroy]
     resources :memberships, only: [:create, :destroy]
   end
 end
