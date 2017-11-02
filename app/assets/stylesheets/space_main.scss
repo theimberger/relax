@@ -44,12 +44,17 @@
         font-size: 2.3em;
         color: #aaa;
       }
-      input {
+      form {
+        display: flex;
+        align-items: center;
         text-align: left;
         flex-grow: 1;
-        font-size: 1em;
+        font-size: 1.2em;
         margin-left: 10px;
         color: #aaa;
+        input {
+
+        }
         &:focus {
           color: black;
         }
@@ -72,13 +77,25 @@
 
   .message_list {
     position: absolute;
-    bottom: 82px;
+    bottom: 60px;
     top: 0px;
-    align-items: baseline;
+    left: 0;
+    right: 0;
     overflow: scroll;
+    padding: 10px 20px;
+    line-height: 1.5;
+    .message_author {
+      font-weight: 500;
+    }
+
+    li {
+      align-self: baseline;
+      font-size: 1em;
+      padding: 5px 0;
+    }
 
     li:last-child {
-
+      padding-bottom: 20px;
     }
 
     .message_spacer {

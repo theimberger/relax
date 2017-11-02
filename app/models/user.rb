@@ -30,6 +30,10 @@ class User < ApplicationRecord
     source: :collection,
     source_type: :Channel
 
+  has_many :messages,
+    class_name: :Message,
+    foreign_key: :user_id
+
   # auth methods
   after_initialize :ensure_session_token
 

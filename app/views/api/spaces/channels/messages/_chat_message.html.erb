@@ -1,1 +1,5 @@
-<li key="<%= message.id %>"><%= message.content %></li>
+<li key="<%= message.id %>">
+  <span class="message_author"><%= message.user.username %></span>
+  <br>
+  <%= message.content %>
+</li>
