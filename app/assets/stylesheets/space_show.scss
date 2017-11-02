@@ -103,9 +103,12 @@ h5 {
 }
 
 .space_header {
-  flex-grow: 1;
-  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 220px;
+  right: 0;
   padding: 0 15px;
+  height: 60px;
   border-bottom: 1px solid #eee;
   display: flex;
   justify-content: space-between;

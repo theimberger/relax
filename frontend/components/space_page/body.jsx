@@ -2,7 +2,9 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import LeftNav from './left_nav';
 import Header from './header';
-import Main from './main';
+import Messages from './messages';
+import MessageInput from './message_input';
+import Sidebar from './sidebar';
 
 class Body extends React.Component {
 
@@ -50,6 +52,7 @@ class Body extends React.Component {
     }
     return (
       <div className="show_main">
+
         <LeftNav
           activeChannel={this.state.activeChannel}
           space={this.state.space}
@@ -58,6 +61,17 @@ class Body extends React.Component {
         />
         <Header activeChannel = {this.state.activeChannel}
           user= {this.props.user} />
+        <div className="space_main">
+          <div className="messages_wrapper">
+            <Messages messages={this.state.activeChannel.messages}/>
+            <MessageInput
+              channel={this.state.activeChannel}
+              user={this.props.user}
+            />
+          </div>
+          <Sidebar />
+        </div>
+
       </div>
     );
   }

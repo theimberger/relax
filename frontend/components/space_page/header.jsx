@@ -16,7 +16,7 @@ const Header = (props) => {
   return (
     <header className="space_header">
       <section>
-        <h4>{channelTitle}</h4>
+        <h4 id="channel_title">{channelTitle}</h4>
         <h5>Users</h5>
       </section>
       <section>
