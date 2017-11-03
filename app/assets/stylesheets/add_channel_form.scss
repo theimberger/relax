@@ -198,6 +198,13 @@
     margin-bottom: 10px;
     color: #777;
   }
+}
 
-
+.indirect {
+  button {
+    width: 200px !important;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+  }
 }

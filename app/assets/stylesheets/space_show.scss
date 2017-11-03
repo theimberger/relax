@@ -117,3 +117,35 @@ h5 {
     color: black;
   }
 }
+
+.user_dropdown {
+  padding: 15px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  position: absolute;
+  left: 5px;
+  top: 60px;
+  background-color: white;
+  z-index: 5;
+  color: black;
+  max-height: 600px;
+  width: 270px;
+  h4 {
+    color: black;
+  }
+
+  .logout {
+    display: block;
+    font-size: 1em;
+    background: white;
+    width: 100%;
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding: 5px;
+  }
+
+}
+
+.hidden {
+  display: none;
+}

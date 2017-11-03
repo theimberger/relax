@@ -1,4 +1,5 @@
 import React from 'react';
+import UserDropdown from './user_dropdown';
 import { AddChannel, AddDirect } from "./add_channel_container";
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
@@ -19,6 +20,10 @@ class LeftNav extends React.Component {
     form = form[0];
     form.style.display = "flex";
     form.focus();
+  }
+
+  toggleUserDropDown() {
+    $('.user_dropdown').toggleClass("hidden");
   }
 
   render() {
@@ -80,7 +85,7 @@ class LeftNav extends React.Component {
 
         let title = channel.users.filter(
           (user) => user.id !== this.props.user.id );
-          
+
         if (title[0] === undefined) {
           return;
         }
@@ -107,12 +112,14 @@ class LeftNav extends React.Component {
     return(
       <div className="space_left_nav">
 
-        <nav className="left_nav_header">
+        <nav className="left_nav_header"
+          onClick={ () => this.toggleUserDropDown() }>
           <h4>{this.props.space.title}</h4>
           <h5>
             <span className="status_circle"></span>
             {this.props.user.username}
           </h5>
+          <UserDropdown />
         </nav>
 
         <h3>Channels {addChannel}</h3>

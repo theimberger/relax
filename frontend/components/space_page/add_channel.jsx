@@ -72,9 +72,8 @@ class AddChannel extends React.Component {
             (e) => {
                 this.update(e, "title");
               }
-            } />
-            <br/>
-            <button style={{"width": "auto"}}>Add Channel</button>
+            } />    
+            <button>Add Channel</button>
 
         </form>
       </div>
