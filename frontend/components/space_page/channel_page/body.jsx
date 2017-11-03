@@ -27,8 +27,8 @@ class Body extends React.Component {
   }
 
   componentDidUpdate(newProps){
+    let newState = this.state;
     if (newProps.match.params.channel_id !== this.props.match.params.channel_id) {
-      let newState = this.state;
       newState.channel = this.props;
       this.props.getChannel(this.props.match.params.channel_id).then(
         (channel) => {
@@ -37,6 +37,8 @@ class Body extends React.Component {
           this.setState(newState);
       });
     }
+
+    
   }
 
   render() {

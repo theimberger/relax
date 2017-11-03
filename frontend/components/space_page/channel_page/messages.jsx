@@ -1,19 +1,36 @@
 import React from 'react';
 
-const Messages = (props) => {
-  let messages = props.messages.map( (message) => (
-    <li key={message.id}>
-      <span className="message_author">{message.author}</span>
-      <br />
-      {message.content}
-    </li>
-  ));
+class Messages extends React.Component {
 
-  return (
-    <ul className="message_list">
-      {messages}
-    </ul>
-  );
-};
+  scrollDown() {
+    let list = document.getElementsByClassName('message_list');
+    list = list[0];
+    list.scrollTop = list.scrollHeight;
+  }
+
+  componentDidMount() {
+    this.scrollDown();
+  }
+
+  componentDidUpdate() {
+    this.scrollDown();
+  }
+
+  render () {
+    let messages = this.props.messages.map( (message) => (
+      <li key={message.id}>
+        <span className="message_author">{message.author}</span>
+        <br />
+        {message.content}
+      </li>
+    ));
+
+    return (
+      <ul className="message_list">
+        {messages}
+      </ul>
+    );
+  }
+}
 
 export default Messages;

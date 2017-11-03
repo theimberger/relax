@@ -17,7 +17,6 @@ class Body extends React.Component {
     this.state = {
       status: "pending"
     };
-
     this.update = this.update.bind(this);
   }
 
@@ -47,6 +46,7 @@ class Body extends React.Component {
   }
 
   render() {
+
     if (this.state.status === "pending") {
       return (
         <h1>Loading...</h1>
