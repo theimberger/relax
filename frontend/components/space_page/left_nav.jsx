@@ -72,7 +72,7 @@ class LeftNav extends React.Component {
                   {channel.title}
                   <span style={{color: "#777"}}> (you) </span>
                 <i className="fa fa-times-circle" aria-hidden="true"
-                  onClick={() => this.openForm("addChannel")}></i>
+                  onClick={() => this.props.deleteChannel(channel.id)}></i>
               </li>
             </Link>
           );
@@ -80,6 +80,10 @@ class LeftNav extends React.Component {
 
         let title = channel.users.filter(
           (user) => user.id !== this.props.user.id );
+          
+        if (title[0] === undefined) {
+          return;
+        }
 
         title = title[0].username;
 
@@ -93,7 +97,7 @@ class LeftNav extends React.Component {
                 <span className="status_circle"></span>
                 {title}
               <i className="fa fa-times-circle" aria-hidden="true"
-                onClick={() => this.openForm("addChannel")}></i>
+                onClick={() => this.props.deleteChannel(channel.id)}></i>
             </li>
           </Link>
         );

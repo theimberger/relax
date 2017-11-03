@@ -1,5 +1,5 @@
 import React from 'react';
-import LeftNav from './left_nav';
+import LeftNav from './left_nav_container';
 import Header from './header';
 import ChannelPage from './channel_page/body';
 import Sidebar from './sidebar';

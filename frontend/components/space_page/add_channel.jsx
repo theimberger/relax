@@ -1,10 +1,39 @@
 import React from 'react';
 
 class AddChannel extends React.Component {
-  closeForm() {
+  constructor() {
+    super();
+    this.state = {
+      title: "",
+      purpose: ""
+    };
 
+    this.update = this.update.bind(this);
+  }
+
+  closeForm() {
     let form = document.getElementsByClassName('indirect')[0];
     form.style.display = "none";
+  }
+
+  submitForm() {
+    console.log('submitted');
+    this.props.createChannel(this.props.space.id,
+      {
+        channel: {
+          is_direct: false,
+          title: this.state.title,
+          purpose: this.state.purpose
+        }
+      });
+    // this.updateFilter({currentTarget: {value: ""}});
+    this.closeForm();
+  }
+
+  update(event, field) {
+    let newState = this.state;
+    newState[field] = event.currentTarget.value;
+    this.setState(newState);
   }
 
   render() {
@@ -27,14 +56,26 @@ class AddChannel extends React.Component {
           <br/> esc
         </div>
         <h1>Create a channel</h1>
-        <form>
+        <form onSubmit={() => this.submitForm()}>
 
           {/* <label>Make the channel private?</label>
           <input type="checkbox" className="slider"></input> */}
-          <label>Name</label>
-          <input placeholder="e.g. discussion"></input>
+          <label>Title</label>
+          <input placeholder="e.g. discussion"
+            onChange={
+              (e) => {
+                this.update(e, "title");
+              }
+            } />
           <label>Purpose (optional)</label>
-          <input placeholder="e.g. for talking about things"></input>
+          <input placeholder="e.g. for talking about things" onChange={
+            (e) => {
+                this.update(e, "title");
+              }
+            } />
+            <br/>
+            <button style={{"width": "auto"}}>Add Channel</button>
+
         </form>
       </div>
     );
