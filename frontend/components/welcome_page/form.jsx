@@ -12,6 +12,7 @@ class WelcomeForm extends React.Component {
     // this.handleSubmit.bind(this);
     // this.update.bind(this);
     this.navigateToSpaceIndex.bind(this);
+    this.logoutUser = this.logoutUser.bind(this);
   }
 
   update(field) {
@@ -19,6 +20,12 @@ class WelcomeForm extends React.Component {
       let newState = {[field]: e.currentTarget.value};
       this.setState(newState);
     };
+  }
+
+  logoutUser(e) {
+    e.preventDefault();
+    this.props.logout();
+    this.props.history.push('/');
   }
 
   navigateToSpaceIndex() {
@@ -51,7 +58,7 @@ class WelcomeForm extends React.Component {
         <button onClick={ () => this.navigateToSpaceIndex() }>
           Go to Your Spaces
         </button>
-        <button onClick={ () => this.props.logout() }>Logout</button>
+        <button onClick={ (e) => this.logoutUser(e) }>Logout</button>
       </form>;
     } else {
       form = <form className="session">
