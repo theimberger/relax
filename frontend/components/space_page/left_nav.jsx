@@ -34,7 +34,10 @@ class LeftNav extends React.Component {
         aria-hidden="true"></i>;
     }
 
-    let channels = this.props.space.channels.map((channel, idx) => {
+    let allChannels = this.props.space.channels;
+    allChannels.sort((a, b) => a.id > b.id);
+
+    let channels = allChannels.map((channel, idx) => {
       if (channel.is_direct === false) {
 
         if (channel === this.props.activeChannel) {
@@ -57,7 +60,7 @@ class LeftNav extends React.Component {
       }
     });
 
-    let directs = this.props.space.channels.map((channel, idx) => {
+    let directs = allChannels.map((channel, idx) => {
       if (channel.is_direct) {
         let active = "";
         if (channel === this.props.activeChannel) {

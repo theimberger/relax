@@ -17,11 +17,11 @@ const Header = (props) => {
     <header className="space_header">
       <section>
         <h4 id="channel_title">{channelTitle}</h4>
-        <h5>Users</h5>
+        <h5>users: {props.activeChannel.users.length}</h5>
       </section>
       <section>
-        <i class="fa fa-cog" aria-hidden="true"></i>
-        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <i className="fa fa-cog" aria-hidden="true"></i>
+        <i className="fa fa-info-circle" aria-hidden="true"></i>
       </section>
     </header>
   );
