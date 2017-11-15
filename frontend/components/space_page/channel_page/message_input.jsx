@@ -36,14 +36,19 @@ class MessageInput extends React.Component {
     let channelTitle = this.props.channel.title;
     if (this.props.channel.is_direct
       && this.props.channel.title !== this.props.user.username) {
-        channelTitle = this.props.channel.users.filter(
-          (user) => user.id !== this.props.user.id );
-          channelTitle = channelTitle[0].username;
-        }
+    channelTitle = this.props.channel.users.filter(
+      (user) => user.id !== this.props.user.id );
+      channelTitle = channelTitle[0].username;
+    }
 
-        if (!this.props.channel.is_direct) {
-          channelTitle = `# ${channelTitle}`;
-        }
+    if (!this.props.channel.is_direct) {
+      channelTitle = `#${channelTitle}`;
+    }
+    channelTitle = "Message " + channelTitle;
+    if (this.props.channel.title === this.props.user.username) {
+      channelTitle = "Jot something down";
+    }
+
 
     return (
       <div className="message_input">
@@ -54,7 +59,7 @@ class MessageInput extends React.Component {
           }}>
           <input
             id="message_text_input"
-            placeholder={`Message ${channelTitle}`}
+            placeholder={channelTitle}
             autoComplete="off"
             onChange= {(e) => {
               this.update(e);

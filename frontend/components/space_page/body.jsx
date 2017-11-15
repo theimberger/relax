@@ -73,7 +73,8 @@ class Body extends React.Component {
         <div className="space_main">
           <Route path="/spaces/:id/channels/:channel_id"
             component={ChannelPage} />
-          <Sidebar />
+          <Sidebar channel={this.state.activeChannel}
+            user= {this.props.user} />
         </div>
 
       </div>

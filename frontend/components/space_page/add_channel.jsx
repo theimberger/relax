@@ -72,7 +72,13 @@ class AddChannel extends React.Component {
             (e) => {
                 this.update(e, "title");
               }
-            } />    
+            } />
+          <label>Send Invites To (optional):</label>
+          <input placeholder="username" onChange={
+            (e) => {
+                this.update(e, "members");
+              }
+            } />
             <button>Add Channel</button>
 
         </form>

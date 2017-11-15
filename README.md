@@ -1,4 +1,5 @@
-# Relax - A Slack inspired chat app
+# Relax
+A Slack inspired chat app
 
 ## About
 Relax is a real-time chat app built in imitation of Slack.  Users can create "spaces" in which they create channels to chat it.  Relax is built on Ruby on Rails, using ActionCable as it's web socketing tool.  Relax utilizes a React/Redux cycle as it's front end, which allows it to maintain a consistent application state during user interaction.  Future features should include better error handling, smoother UI, and the ability to make spaces and channels public.
@@ -10,3 +11,6 @@ Because Relax uses ActionCable, it requires Redis.  In production this is provid
 
 ## On the Database
 The database schema can be seen in the Wiki.  Relax uses a Postgresql database.  The only seeds provided are Users (which are, incidentally, Star Wars themed).
+
+## Code of Interest
+### There is none

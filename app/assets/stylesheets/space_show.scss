@@ -149,3 +149,11 @@ h5 {
 .hidden {
   display: none;
 }
+
+.right_nav {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  width: 300px;
+  height: 100%;
+}

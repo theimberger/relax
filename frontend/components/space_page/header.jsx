@@ -10,7 +10,7 @@ const Header = (props) => {
   }
 
   if (!props.activeChannel.is_direct) {
-    channelTitle = `# ${channelTitle}`;
+    channelTitle = `#${channelTitle}`;
   }
 
   return (
@@ -20,7 +20,8 @@ const Header = (props) => {
         <h5>Users</h5>
       </section>
       <section>
-        Some stuff...
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
       </section>
     </header>
   );
