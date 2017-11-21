@@ -12,6 +12,9 @@ const Header = (props) => {
   if (!props.activeChannel.is_direct) {
     channelTitle = `#${channelTitle}`;
   }
+  const showSidebar = () => {
+    document.getElementsByClassName('right_nav')[0].style.display = "inline";
+  };
 
   return (
     <header className="space_header">
@@ -21,7 +24,8 @@ const Header = (props) => {
       </section>
       <section>
         <i className="fa fa-cog" aria-hidden="true"></i>
-        <i className="fa fa-info-circle" aria-hidden="true"></i>
+        <i className="fa fa-info-circle" aria-hidden="true"
+          onClick={showSidebar}></i>
       </section>
     </header>
   );

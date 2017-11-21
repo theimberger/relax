@@ -19,9 +19,9 @@ class MessageInput extends React.Component {
       this.props.match.params.channel_id,
       {message: message});
     document.getElementById('message_text_input').value = "";
-    let newState = this.state;
-    newState.input = "";
-    this.setState(newState);
+    // let newState = this.state;
+    // newState.input = "";
+    this.setState({input: ""});
   }
 
   update(e) {
@@ -55,15 +55,14 @@ class MessageInput extends React.Component {
         <div className="input_wrapper">
           <div className="plus">+</div>
           <form onSubmit={(e) => {
-            this.sendMessage(e);
-          }}>
-          <input
-            id="message_text_input"
-            placeholder={channelTitle}
-            autoComplete="off"
-            onChange= {(e) => {
-              this.update(e);
-            }}/>
+            this.sendMessage(e);}}>
+            <input
+              id="message_text_input"
+              placeholder={channelTitle}
+              autoComplete="off"
+              onChange= {(e) => {
+                this.update(e);
+              }}/>
           </form>
           <div className="input_extras"></div>
         </div>
