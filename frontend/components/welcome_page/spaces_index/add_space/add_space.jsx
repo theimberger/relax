@@ -117,14 +117,10 @@ class AddSpace extends React.Component {
                     collection_id: newState.space.id,
                     collection_type: "Space",
                     username: invite
-                  }}).then(
-                    () => {
-                      this.navigateToSpaceShow();
-                    }
-                  );
+                  }});
                 }
-
               });
+              this.navigateToSpaceShow();
               break;
             default:
               break;

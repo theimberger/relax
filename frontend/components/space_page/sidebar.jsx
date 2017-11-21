@@ -11,9 +11,20 @@ const Sidebar = (props) => {
     channelTitle = `#${channelTitle}`;
   }
   return (
-    <nav className="right-nav">
-      <h4>About {channelTitle}</h4>
-    </nav>
+    <ul className="right_nav">
+      <li id="channel_info_header">
+        <h4>About {channelTitle}</h4>
+        <span className="channel_info_button">✕</span>
+      </li>
+      <li>
+        <h4>Channel Details</h4>
+        <span className="channel_info_button">▷</span>
+      </li>
+      <li>
+        <h4>Members</h4>
+        <span className="channel_info_button">▷</span>
+      </li>
+    </ul>
   );
 };
 

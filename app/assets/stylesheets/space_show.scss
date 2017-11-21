@@ -116,6 +116,13 @@ h5 {
   h4 {
     color: black;
   }
+  section {
+    i {
+      font-size: 1.5em;
+      margin-right: -5px;
+      margin-left: 20px;
+    }
+  }
 }
 
 .user_dropdown {
@@ -150,10 +157,37 @@ h5 {
   display: none;
 }
 
+.messages_wrapper {
+  position: relative;
+  flex-grow: 1;
+}
 .right_nav {
-  position: absolute;
-  right: 0;
-  top: 60px;
   width: 300px;
   height: 100%;
+  border-left: 1px solid #eee;
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin: 0 10px;
+    height: 60px;
+    cursor: pointer;
+    h4 {
+      display: inline-block;
+      font-weight: 400;
+    }
+  }
+}
+
+.channel_info_button {
+  display: inline-block;
+  cursor: pointer;
+}
+
+#channel_info_header {
+  cursor: default;
+  h4 {
+    font-weight: 700;
+  }
 }
