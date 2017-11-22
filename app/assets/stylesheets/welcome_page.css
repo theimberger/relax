@@ -37,6 +37,7 @@
 	background: inherit;
 	padding: 8px;
 	border-radius: 5px;
+	width: 100px;
 }
 
 .welcome_nav li:hover {

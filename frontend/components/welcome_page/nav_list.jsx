@@ -2,11 +2,11 @@ import React from 'react';
 
 const NavList = () => (
   <ul>
-    <li>Why Relax?</li>
-    <li>Pricing</li>
-    <li>About Us</li>
-    <li>Find Your Zen</li>
-    <li><button>Create a Space</button></li>
+    <li>Github /</li>
+    <li>Relax Repo /</li>
+    <li>LinkedIn /</li>
+    <li>Angel List /</li>
+    <li><button>//t</button></li>
   </ul>
 );
 

@@ -181,8 +181,13 @@ h5 {
 }
 
 .channel_info_button {
+  color: #ccc;
   display: inline-block;
   cursor: pointer;
+}
+
+li:hover .channel_info_button {
+  color: black;
 }
 
 #channel_info_header {

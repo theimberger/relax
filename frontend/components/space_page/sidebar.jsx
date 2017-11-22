@@ -25,6 +25,7 @@ const Sidebar = (props) => {
       <li>
         <h4>Channel Details</h4>
         <span className="channel_info_button">▷</span>
+        
       </li>
       <li>
         <h4>Members</h4>
