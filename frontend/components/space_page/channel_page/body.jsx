@@ -38,7 +38,7 @@ class Body extends React.Component {
       });
     }
 
-    
+
   }
 
   render() {
