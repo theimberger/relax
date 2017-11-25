@@ -15,6 +15,11 @@ const Sidebar = (props) => {
     document.getElementsByClassName('right_nav')[0].style.display = "none";
   };
 
+  const show = (name) => {
+    let $clicked = $(name);
+    $clicked.toggleClass("hidden");
+  };
+
   return (
     <ul className="right_nav">
       <li id="channel_info_header">
@@ -22,12 +27,12 @@ const Sidebar = (props) => {
         <span className="channel_info_button"
           onClick={hide}>✕</span>
       </li>
-      <li>
+      <li onclick={() => show(".channel_details")}>
         <h4>Channel Details</h4>
         <span className="channel_info_button">▷</span>
-        
+
       </li>
-      <li>
+      <li onclick={() => show(".members")}>
         <h4>Members</h4>
         <span className="channel_info_button">▷</span>
       </li>

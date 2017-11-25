@@ -41,11 +41,10 @@ class Body extends React.Component {
   }
 
   update(data){
-    let broadcasts = $('.broadcast');
-    broadcasts.remove();
+    $('.broadcast').remove();
     let newState = Object.assign({}, this.state, data);
     this.setState(newState);
-
+    debugger
   }
 
   render() {
