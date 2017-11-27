@@ -18,21 +18,25 @@ const Sidebar = (props) => {
   const show = (name) => {
     let $clicked = $(name);
     $clicked.toggleClass("hidden");
+    $clicked.parent().toggleClass("expanded");
   };
-
+  
   return (
-    <ul className="right_nav">
+    <ul className="right_nav" style={{"display": "none"}}>
       <li id="channel_info_header">
         <h4>About {channelTitle}</h4>
         <span className="channel_info_button"
           onClick={hide}>✕</span>
       </li>
-      <li onclick={() => show(".channel_details")}>
+      <li onClick={() => show(".channel_details")}>
         <h4>Channel Details</h4>
         <span className="channel_info_button">▷</span>
+        <div className="channel_details hidden">
+          <p>{props.channel.purpose}</p>
+        </div>
 
       </li>
-      <li onclick={() => show(".members")}>
+      <li onClick={() => show(".members")}>
         <h4>Members</h4>
         <span className="channel_info_button">▷</span>
       </li>
