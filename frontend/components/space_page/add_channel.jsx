@@ -70,7 +70,7 @@ class AddChannel extends React.Component {
           <label>Purpose (optional)</label>
           <input placeholder="e.g. for talking about things" onChange={
             (e) => {
-                this.update(e, "title");
+                this.update(e, "purpose");
               }
             } />
           <label>Send Invites To (optional):</label>
