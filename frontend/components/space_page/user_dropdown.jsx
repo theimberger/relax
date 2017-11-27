@@ -10,20 +10,30 @@ class UserDropdown extends React.Component {
     this.logoutUser = this.logoutUser.bind(this);
   }
 
+  navigateHome() {
+    this.props.history.push('/');
+  }
+
   logoutUser(e) {
     e.preventDefault();
     this.props.logout();
-    this.props.history.push('/');
+    this.navigateHome();
   }
 
   render() {
     return (
       <div className="user_dropdown hidden">
         <h4>{this.props.user.username}</h4>
-        <span className="logout"
-          onClick={(e) => this.logoutUser(e)} >
-          Logout
-        </span>
+        <ul className="options_list">
+          <li className="option"
+            onClick={(e) => this.logoutUser(e)} >
+            Logout
+          </li>
+          <li className="option"
+            onClick={(e) => this.navigateHome()} >
+            Home
+          </li>
+        </ul>
       </div>
     );
   }

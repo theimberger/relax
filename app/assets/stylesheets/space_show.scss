@@ -141,14 +141,26 @@ h5 {
     color: black;
   }
 
-  .logout {
+  .options_list {
+    margin-top: 10px;
+  }
+
+  .option {
     display: block;
-    font-size: 1em;
+    font-size: 1.1em;
     background: white;
     width: 100%;
     border-top: 1px solid #eee;
     margin-top: 5px;
-    padding: 5px;
+    padding: 10px;
+    width: 90%;
+    margin: 0;
+    &:hover {
+      background-color: #eee;
+    }
+    &:first-child {
+      border: none;
+    }
   }
 
 }
@@ -199,15 +211,21 @@ h5 {
 .channel_members {
 
   li {
-    &:last-child {
-      border: none;
+
+    &:first-child {
       margin-top: 20px;
     }
+
     border-bottom: 1px solid #fafafa;
     min-height: auto;
     padding: 10px;
-    font-size: 1em;
+    font-size: 1.1em;
     cursor: default;
+
+    &:last-child {
+      border: none;
+      margin-bottom: 20px;
+    }
   }
 
 }

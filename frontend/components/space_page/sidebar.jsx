@@ -59,7 +59,7 @@ const Sidebar = (props) => {
     } else {
       displayDate += " AM";
     }
-    date = displayDate;
+    date = "Today at " + displayDate;
 
   } else {
     date = `${Months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()}`;

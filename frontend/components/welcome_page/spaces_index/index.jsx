@@ -26,6 +26,28 @@ class Index extends React.Component {
 
   render() {
 
+    let pendingSpaces = Object.keys(this.props.spaces).map( (id) => {
+      if (!this.props.spaces[id].is_pending) {
+        return;
+      }
+      return id;
+    });
+
+    pendingSpaces = pendingSpaces.filter((el) => el !== undefined);
+
+    if (pendingSpaces.length > 0) {
+      pendingSpaces = <li onClick={ () => this.navigateToJoin() }>
+          <span>
+            <h3>Find your relaxing space</h3>
+            <br/> Join an existing space you're invited to
+          </span>
+          <img src={window.arrow} />
+
+        </li>;
+    } else {
+      pendingSpaces = "";
+    }
+
     let spaces = Object.keys(this.props.spaces).map( (id) => {
       if (this.props.spaces[id].is_pending) {
         return null;
@@ -59,14 +81,7 @@ class Index extends React.Component {
       <div>
         <h2>Start with a space</h2>
         <ul className="si_form_links">
-          <li onClick={ () => this.navigateToJoin() }>
-            <span>
-              <h3>Find your relaxing space</h3>
-              <br/> Join or sign into an existing space
-            </span>
-            <img src={window.arrow} />
-
-          </li>
+          {pendingSpaces}
           <li onClick={ () => this.navigateToAdd() }>
             <span>
               <h3>Create a new relaxing space</h3>
