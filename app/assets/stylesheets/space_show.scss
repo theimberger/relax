@@ -184,15 +184,30 @@ h5 {
 }
 
 .channel_details {
-  width: 100%;
-  height: 100px;
-  margin-top: 10px;
-  font-size: 1em;
+  margin: 20px;
+  font-size: 0.85em;
+  h5 {
+    font-size: 1.3em;
+    font-weight: 400;
+  }
+  p {
+    margin: -5px 5px 20px 5px;
+  }
 }
 
-// .expanded {
-//   height: 200px;
-// }
+.channel_members {
+
+  li {
+    &:last-child {
+      border: none;
+    }
+    min-height: auto;
+    margin: 20px;
+    font-size: 1.3em;
+    cursor: default;
+  }
+
+}
 
 .channel_info_button {
   color: #ccc;
