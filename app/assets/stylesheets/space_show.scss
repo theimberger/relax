@@ -165,6 +165,7 @@ h5 {
   width: 300px;
   height: 100%;
   border-left: 1px solid #eee;
+  overflow: scroll;
   li {
     // display: flex;
     // flex-wrap: wrap;
@@ -202,9 +203,10 @@ h5 {
       border: none;
       margin-top: 20px;
     }
+    border-bottom: 1px solid #fafafa;
     min-height: auto;
-    padding: 20px;
-    font-size: 1.3em;
+    padding: 10px;
+    font-size: 1em;
     cursor: default;
   }
 
