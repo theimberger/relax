@@ -86,7 +86,7 @@ const Sidebar = (props) => {
   }
 
   return (
-    <ul className="right_nav" style={{"display": "none"}}>
+    <ul className="right_nav hidden">
       <li id="channel_info_header">
         <h4>About {channelTitle}</h4>
         <span className="channel_info_button"

@@ -13,7 +13,7 @@ const Header = (props) => {
     channelTitle = `#${channelTitle}`;
   }
   const showSidebar = () => {
-    document.getElementsByClassName('right_nav')[0].style.display = "inline";
+    $('.right_nav').toggleClass("hidden");
   };
 
   return (
