@@ -59,6 +59,9 @@ class AddChannel extends React.Component {
   render() {
     let members = this.props.space.users;
     members = members.map((member) => {
+      if (member.username === this.props.user.username) {
+        return "";
+      }
       if (this.state.invites.includes(member.username)){
         return <li
           className="invite selected"
@@ -72,6 +75,17 @@ class AddChannel extends React.Component {
           {member.username}</li>;
       }
     });
+
+    members = members.filter((el) => el !== "");
+
+    if (members.length > 0) {
+      members = <div>
+        <label style={{"fontSize": "1.6em"}}>Add To Channel (optional):</label>
+        <ul className="invite_list">
+          {members}
+        </ul>
+      </div>;
+    }
 
     let button = <button>Create Channel</button>;
     if (this.state.title === ""){
@@ -110,10 +124,7 @@ class AddChannel extends React.Component {
               }
             } />
           {button}
-          <label>Add To Channel (optional):</label>
-          <ul className="invite_list">
-            {members}
-          </ul>
+          {members}
         </form>
       </div>
     );

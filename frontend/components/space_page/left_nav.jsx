@@ -137,7 +137,7 @@ class LeftNav extends React.Component {
         <ul>
           {directs}
         </ul>
-        <AddChannel space={this.state.space} />
+        <AddChannel space={this.state.space} user={this.props.user}/>
         <AddDirect space={this.state.space} />
       </div>
     );
