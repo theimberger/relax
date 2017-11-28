@@ -5,7 +5,8 @@ class AddChannel extends React.Component {
     super();
     this.state = {
       title: "",
-      purpose: ""
+      purpose: "",
+      invites: []
     };
 
     this.update = this.update.bind(this);
@@ -17,7 +18,6 @@ class AddChannel extends React.Component {
   }
 
   submitForm() {
-    console.log('submitted');
     this.props.createChannel(this.props.space.id,
       {
         channel: {
@@ -25,8 +25,16 @@ class AddChannel extends React.Component {
           title: this.state.title,
           purpose: this.state.purpose
         }
+      }).then((data) => {
+        this.state.invites.forEach((invite) => {
+          this.props.inviteMember({membership:{
+            collection_id: data.id,
+            collection_type: "Channel",
+            username: invite
+          }});
+        });
       });
-    // this.updateFilter({currentTarget: {value: ""}});
+
     this.closeForm();
   }
 
@@ -36,13 +44,44 @@ class AddChannel extends React.Component {
     this.setState(newState);
   }
 
+  addInvite(name){
+    let newState = this.state;
+    newState.invites.push(name);
+    this.setState(newState);
+  }
+
+  removeInvite(name){
+    let newState = this.state;
+    newState.invites = newState.invites.filter((invite) => invite !== name);
+    this.setState(newState);
+  }
+
   render() {
+    let members = this.props.space.users;
+    members = members.map((member) => {
+      if (this.state.invites.includes(member.username)){
+        return <li
+          className="invite selected"
+          onClick={() => this.removeInvite(member.username)}
+          key={member.id}>
+          {member.username}</li>;
+      } else {
+        return <li className="invite"
+          onClick={() => this.addInvite(member.username)}
+          key={member.id}>
+          {member.username}</li>;
+      }
+    });
+
+    let button = <button>Create Channel</button>;
+    if (this.state.title === ""){
+      button = <button className="inactive">Create Channel</button>;
+    }
 
     return (
       <div className="add_channel_form indirect"
         onKeyDown={
           (e) => {
-            console.log(e);
             if (e.keyCode === 27) {
               this.closeForm();
             }
@@ -57,9 +96,6 @@ class AddChannel extends React.Component {
         </div>
         <h1>Create a channel</h1>
         <form onSubmit={() => this.submitForm()}>
-
-          {/* <label>Make the channel private?</label>
-          <input type="checkbox" className="slider"></input> */}
           <label>Title</label>
           <input placeholder="e.g. discussion"
             onChange={
@@ -73,14 +109,11 @@ class AddChannel extends React.Component {
                 this.update(e, "purpose");
               }
             } />
-          <label>Send Invites To (optional):</label>
-          <input placeholder="username" onChange={
-            (e) => {
-                this.update(e, "members");
-              }
-            } />
-            <button>Add Channel</button>
-
+          {button}
+          <label>Add To Channel (optional):</label>
+          <ul className="invite_list">
+            {members}
+          </ul>
         </form>
       </div>
     );

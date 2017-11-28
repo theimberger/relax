@@ -26,12 +26,12 @@ class UserDropdown extends React.Component {
         <h4>{this.props.user.username}</h4>
         <ul className="options_list">
           <li className="option"
-            onClick={(e) => this.logoutUser(e)} >
-            Logout
-          </li>
-          <li className="option"
             onClick={(e) => this.navigateHome()} >
             Home
+          </li>
+          <li className="option"
+            onClick={(e) => this.logoutUser(e)} >
+            <span style={{"fontWeight": "700"}}>Logout</span>
           </li>
         </ul>
       </div>

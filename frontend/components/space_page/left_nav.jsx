@@ -16,7 +16,6 @@ class LeftNav extends React.Component {
 
   openForm(type) {
     let form = document.getElementsByClassName(type);
-    console.log(form);
     form = form[0];
     form.style.display = "flex";
     form.focus();

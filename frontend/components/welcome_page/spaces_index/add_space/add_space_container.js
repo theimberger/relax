@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   postSpace: (space) => dispatch(postSpace(space)),
   updateSpace: (space) => dispatch(updateSpace(space)),
-  inviteMember: (id) => createMembership(id)
+  inviteMember: (membership) => createMembership(membership)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddSpace);

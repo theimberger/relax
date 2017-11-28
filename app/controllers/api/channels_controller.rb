@@ -43,6 +43,9 @@ class Api::ChannelsController < ApplicationController
         is_pending: false,
         user_id: current_user.id
     }).save!
+
+    @channel = channel
+    render "api/spaces/channels/show"
   end
 
   def show
