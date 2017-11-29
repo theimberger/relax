@@ -140,30 +140,33 @@ h5 {
   width: 270px;
   h4 {
     color: black;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
   }
+}
 
-  .options_list {
-    margin-top: 10px;
+.options_list {
+  margin-top: 10px;
+}
+
+.option {
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  font-size: 1.1em;
+  background: white;
+  border: none;
+  padding: 5px;
+  padding-left: 10px;
+  width: 90%;
+  margin: 0;
+  &:hover {
+    background-color: #08c !important;
+    color: white !important;
   }
-
-  .option {
-    display: block;
-    font-size: 1.1em;
-    background: white;
-    width: 100%;
-    border-top: 1px solid #eee;
-    margin-top: 5px;
-    padding: 10px;
-    width: 90%;
-    margin: 0;
-    &:hover {
-      background-color: #eee;
-    }
-    &:first-child {
-      border: none;
-    }
+  &:first-child {
+    border: none;
   }
-
 }
 
 .hidden {
@@ -248,5 +251,20 @@ li:hover .channel_info_button {
   cursor: default;
   h4 {
     font-weight: 700;
+  }
+}
+
+.channel_options {
+  z-index: 2;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: absolute;
+  right: 45px;
+  top: 50px;
+  width: 200px;
+  padding: 10px;
+  .options_list {
+    margin-top: 0;
   }
 }

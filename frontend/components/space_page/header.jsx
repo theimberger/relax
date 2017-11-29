@@ -1,4 +1,5 @@
 import React from 'react';
+import ChannelOptions from './channel_options'
 
 const Header = (props) => {
   let channelTitle = props.activeChannel.title;
@@ -12,10 +13,15 @@ const Header = (props) => {
   if (!props.activeChannel.is_direct) {
     channelTitle = `#${channelTitle}`;
   }
+
   const showSidebar = () => {
     $('.right_nav').toggleClass("hidden");
   };
 
+  const toggleChannelOptions = () => {
+    $('.channel_options').toggleClass("hidden");
+  };
+  
   return (
     <header className="space_header">
       <section>
@@ -23,10 +29,12 @@ const Header = (props) => {
         <h5>users: {props.activeChannel.users.length}</h5>
       </section>
       <section>
-        <i className="fa fa-cog" aria-hidden="true"></i>
+        <i className="fa fa-cog" aria-hidden="true"
+          onClick={toggleChannelOptions}></i>
         <i className="fa fa-info-circle" aria-hidden="true"
           onClick={showSidebar}></i>
       </section>
+      <ChannelOptions channel={props.activeChannel} />
     </header>
   );
 };

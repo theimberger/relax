@@ -45,12 +45,16 @@ class Api::ChannelsController < ApplicationController
     }).save!
 
     @channel = channel
+    @admin = @channel.users.joins(:memberships).select('users.*').where('memberships.is_admin = TRUE')
+    @admin = @admin.first
     render "api/spaces/channels/show"
   end
 
   def show
     @messages = Message.all
     @channel = Channel.find(params[:id])
+    @admin = @channel.users.joins(:memberships).select('users.*').where('memberships.is_admin = TRUE')
+    @admin = @admin.first
     render "api/spaces/channels/show"
   end
 

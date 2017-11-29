@@ -37,8 +37,14 @@ class Body extends React.Component {
           this.setState(newState);
       });
     }
+  }
 
-
+  componentWillReceiveProps(newProps){
+    if (newProps !== this.props){
+      let newState = this.state;
+      newState.status = "pending";
+      this.setState(newState);
+    }
   }
 
   render() {

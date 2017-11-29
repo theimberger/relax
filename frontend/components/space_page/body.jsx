@@ -18,11 +18,13 @@ class Body extends React.Component {
       status: "pending"
     };
     this.update = this.update.bind(this);
+    this.activeChannel = {};
   }
 
   componentDidMount() {
     let newState = this.state;
-    this.props.getSpace(this.props.match.params["id"]).then(
+    this.props.getSpace(this.props.match.params["id"])
+    .then(
       (space) => {
         newState["status"] = "loaded";
         newState["space"] = space.space;
@@ -40,11 +42,24 @@ class Body extends React.Component {
     );
   }
 
+
+  componentWillReceiveProps(newProps){
+    if (this.props !== newProps){
+      let newState = Object.assign({}, this.state, this.data);
+      newState.space = newProps.spaces[this.props.match.params["id"]];
+      this.setState(newState);
+    }
+    this.data = {};
+  }
+
   update(data){
+    this.data = data;
     $('.broadcast').remove();
     let newState = Object.assign({}, this.state, data);
     this.setState(newState);
+    this.render();
   }
+
 
   render() {
     if (this.state.status === "pending") {
