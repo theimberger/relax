@@ -1,5 +1,5 @@
 import React from 'react';
-import ChannelOptions from './channel_options'
+import ChannelOptions from './channel_options';
 
 const Header = (props) => {
   let channelTitle = props.activeChannel.title;
@@ -21,7 +21,7 @@ const Header = (props) => {
   const toggleChannelOptions = () => {
     $('.channel_options').toggleClass("hidden");
   };
-  
+
   return (
     <header className="space_header">
       <section>

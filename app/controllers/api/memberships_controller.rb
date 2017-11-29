@@ -5,7 +5,7 @@ class Api::MembershipsController < ApplicationController
       render json: ["No such user"], status: 422
     else
       membership = Membership.new(membership_params)
-      
+
       if membership.collection_type == "Channel"
         membership[:is_pending] = false
       end
@@ -43,6 +43,11 @@ class Api::MembershipsController < ApplicationController
   end
 
   def destroy
+    Membership.select('memberships.*').
+      where(collection_type: :Channel).
+      where(collection_id: params[:id]).
+      where(user_id: current_user.id).delete_all
+    render json: ["membership deleted"], status: 200
   end
 
   private
