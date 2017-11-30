@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 import { destroyMembership } from '../../utils/membership_api_util.js';
 
 const ChannelOptions = (props) => {
-  // debugger
   const toggleVis = () => {
     $('.channel_options').toggleClass("hidden");
   };
@@ -12,7 +11,10 @@ const ChannelOptions = (props) => {
   if (props.channel.title !== "general"){
     additionalOptions.push(
       <li className="option" key="1"
-        onClick={() => destroyMembership(props.channel.id)}>
+        onClick={() => {
+          toggleVis();
+          destroyMembership(props.channel.id);
+        }}>
         Leave Channel</li>
     );
   }
@@ -36,4 +38,4 @@ const ChannelOptions = (props) => {
   );
 };
 
-export default ChannelOptions;
+export default withRouter(ChannelOptions);
