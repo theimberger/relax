@@ -34,7 +34,7 @@ class LeftNav extends React.Component {
     }
 
     let allChannels = this.props.space.channels;
-    allChannels.sort((a, b) => a.id > b.id);
+    allChannels.sort((a, b) => a.id - b.id);
 
     let channels = allChannels.map((channel, idx) => {
       if (channel.is_direct === false) {
@@ -137,7 +137,14 @@ class LeftNav extends React.Component {
         <ul>
           {directs}
         </ul>
-        <AddChannel space={this.state.space} user={this.props.user}/>
+        <AddChannel
+          space={this.state.space}
+          user={this.props.user}
+          
+          updateActiveChannel={
+            (data) => this.props.passChangeToParent({activeChannel: data})
+          }/>
+
         <AddDirect space={this.state.space} />
       </div>
     );

@@ -40,9 +40,15 @@ class Body extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
+    let newState = this.state;
+
     if (newProps !== this.props){
-      let newState = this.state;
       newState.status = "pending";
+      this.setState(newState);
+    }
+
+    if (this.state.channel.messages) {
+      newState.status = "loaded";
       this.setState(newState);
     }
   }

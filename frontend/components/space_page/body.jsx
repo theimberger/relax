@@ -78,6 +78,7 @@ class Body extends React.Component {
         <LeftNav
           activeChannel={this.state.activeChannel}
           space={this.state.space}
+          count={this.state.space.channels.length}
           user={this.props.user}
           passChangeToParent={this.update}
         />

@@ -40,13 +40,10 @@ class AddChannel extends React.Component {
           invites: []
         });
         this.closeForm();
+        this.props.updateActiveChannel(data.channel);
         this.props.history.
           push(`/spaces/${data.channel.space_id}/channels/${data.channel.id}`);
-
       });
-
-
-
   }
 
   update(event, field) {
