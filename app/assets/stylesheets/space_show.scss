@@ -176,7 +176,9 @@ h5 {
 .messages_wrapper {
   position: relative;
   flex-grow: 1;
+  overflow: scroll;
 }
+
 .right_nav {
   width: 300px;
   height: 100%;
