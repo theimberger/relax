@@ -33,9 +33,20 @@ class AddChannel extends React.Component {
             username: invite
           }});
         });
+
+        this.setState({
+          title: "",
+          purpose: "",
+          invites: []
+        });
+        this.closeForm();
+        this.props.history.
+          push(`/spaces/${data.channel.space_id}/channels/${data.channel.id}`);
+
       });
 
-    this.closeForm();
+
+
   }
 
   update(event, field) {

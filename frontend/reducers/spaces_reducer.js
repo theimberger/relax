@@ -6,20 +6,32 @@ import {
   UPDATE_SPACE
 } from '../actions/spaces_actions';
 
-import { RECEIVE_SINGLE_CHANNEL } from '../actions/channel_actions';
+import {
+  RECEIVE_SINGLE_CHANNEL,
+  CREATE_CHANNEL
+} from '../actions/channel_actions';
+
+// import {
+//   CREATE_MEMBERSHIP,
+//   RECEIVE_MEMBERSHIP_ERRORS
+// } from '../actions/membership_actions';
 
 const spacesReducer = (state = {}, action) => {
   switch(action.type) {
+
     case RECEIVE_USER_SPACES:
       let newState = Object.assign({}, state);
       action.spaces.forEach((space) => {
         newState[space.id] = space;
       });
       return newState;
+
     case RECEIVE_SINGLE_SPACE:
       newState = Object.assign({}, state);
       newState[action.space.id] = action.space;
       return newState;
+
+    case CREATE_CHANNEL:
     case RECEIVE_SINGLE_CHANNEL:
       newState = Object.assign({}, state);
       let channelId = action.channel.id;

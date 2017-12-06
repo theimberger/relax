@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import AC from './add_channel';
 import AD from './add_direct';
 import { createMembership } from '../../utils/membership_api_util';
-import { createChannel, getChannel } from '../../utils/channel_api_util';
+import { createChannel, requestSingleChannel } from '../../actions/channel_actions';
 
 import { withRouter } from 'react-router';
 
@@ -15,8 +15,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   inviteMember: (membership) => createMembership(membership),
-  createChannel: (id, channel) => createChannel(id, channel),
-  fetchChannel: (id) => getChannel(id)
+  createChannel: (id, channel) => dispatch(createChannel(id, channel)),
+  fetchChannel: (id) => dispatch(requestSingleChannel(id))
 });
 
 export const AddChannel = withRouter(connect(mapStateToProps,

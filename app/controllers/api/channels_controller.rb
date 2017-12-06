@@ -29,7 +29,7 @@ class Api::ChannelsController < ApplicationController
     Membership.new(membership).save!
     membership[:user_id] = channel[:user]
     Membership.new(membership).save!
-
+    show(direct.id)
   end
 
   def create_channel(channel)
@@ -43,16 +43,12 @@ class Api::ChannelsController < ApplicationController
         is_pending: false,
         user_id: current_user.id
     }).save!
-
-    @channel = channel
-    @admin = @channel.users.joins(:memberships).select('users.*').where('memberships.is_admin = TRUE')
-    @admin = @admin.first
-    render "api/spaces/channels/show"
+    show(channel.id)
   end
 
-  def show
+  def show(id = params[:id])
     @messages = Message.all
-    @channel = Channel.find(params[:id])
+    @channel = Channel.find(id)
     @admin = @channel.users.joins(:memberships).select('users.*').where('memberships.is_admin = TRUE')
     @admin = @admin.first
     render "api/spaces/channels/show"

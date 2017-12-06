@@ -57,7 +57,6 @@ class Body extends React.Component {
     $('.broadcast').remove();
     let newState = Object.assign({}, this.state, data);
     this.setState(newState);
-    this.render();
   }
 
 
