@@ -20,16 +20,49 @@ class AddDirect extends React.Component {
   }
 
   submitForm(user) {
-    console.log('submitted');
+    let exists = false;
+    let directs = this.props.space.channels.filter(
+      (channel) => channel.is_direct);
+
+    if (user.username === this.props.user.username){
+      exists = directs.filter((channel, idx) => channel.title === user.username);
+      if (exists.length > 0){
+        exists = exists[0];
+      }
+    } else {
+
+      directs.forEach((channel) => {
+
+        let userIds = channel.users.map((channelUser) => channelUser.id);
+
+        if (userIds.includes(user.id)){
+          exists = channel;
+        }
+
+      });
+    }
+
+    if (exists){
+      this.closeForm();
+      this.props.history.push(
+        `/spaces/${this.props.space.id}/channels/${exists.id}`);
+      this.props.updateActiveChannel(exists);
+      return;
+    }
+
     this.props.createChannel(this.props.space.id,
       {
         channel: {
           is_direct: true,
           user: user.id
         }
+      }).then((data) => {
+        this.closeForm();
+        this.props.updateActiveChannel(data.channel);
+        this.props.history.push(
+          `/spaces/${data.channel.space_id}/channels/${data.channel.id}`);
       });
-    // this.updateFilter({currentTarget: {value: ""}});
-    // this.closeForm();
+
   }
 
   render() {
@@ -70,7 +103,6 @@ class AddDirect extends React.Component {
       <div className="add_channel_form direct"
         onKeyDown={
           (e) => {
-            console.log(e);
             if (e.keyCode === 27) {
               this.closeForm();
             }

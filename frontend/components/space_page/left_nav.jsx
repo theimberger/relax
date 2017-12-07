@@ -140,12 +140,18 @@ class LeftNav extends React.Component {
         <AddChannel
           space={this.state.space}
           user={this.props.user}
-          
+
           updateActiveChannel={
             (data) => this.props.passChangeToParent({activeChannel: data})
           }/>
 
-        <AddDirect space={this.state.space} />
+        <AddDirect
+          space={this.state.space}
+          user={this.props.user}
+          updateActiveChannel={
+            (data) => this.props.passChangeToParent({activeChannel: data})
+          }/>
+          
       </div>
     );
   }
