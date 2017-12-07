@@ -13,4 +13,69 @@ Because Relax uses ActionCable, it requires Redis.  In production this is provid
 The database schema can be seen in the Wiki.  Relax uses a Postgresql database.  The only seeds provided are Users (which are, incidentally, Star Wars themed).
 
 ## Code of Interest
-### There is none
+### Polymorphic Associations
+Polymorphic associations allow for single join tables to describe multiple types of relationships.  In relax, there are two instances.  The first is the membership instance, which simply permits users to be members of different types of collections.  A user may belong to a specific space, or a channel within a space.  Either way, the relationship is expressed in a single join table.
+
+
+At the DB level:
+```ruby
+create_table "memberships", force: :cascade do |t|
+  t.integer "collection_id", null: false
+  t.string "collection_type", null: false
+  t.integer "user_id", null: false
+  t.boolean "is_admin", default: false
+  ...
+end
+```
+
+
+At the model level:
+```ruby
+# user model associations
+has_many :memberships,
+  class_name: :Membership,
+  foreign_key: :user_id
+
+has_many :spaces,
+  through: :memberships,
+  source: :collection,
+  source_type: :Space
+
+has_many :channels,
+  through: :memberships,
+  source: :collection,
+  source_type: :Channel
+
+#membership model associations
+belongs_to :user,
+  class_name: :User,
+  foreign_key: :user_id
+
+belongs_to :collection, polymorphic: :true
+
+#space model associations
+has_many :memberships, as: :collection
+
+has_many :users,
+  through: :memberships,
+  source: :user
+
+#channel model associations (same as space)
+has_many :memberships, as: :collection
+
+has_many :users,
+  through: :memberships,
+  source: :user
+```
+
+
+The second instance allows messages to hold a reference to the context in which they were authored.  This means a message knows whether it belongs to a specific chat or as a reply to another message (though the reply feature is pending).
+
+```ruby
+create_table "messages", force: :cascade do |t|
+  t.string "content", null: false
+  t.string "context_type", null: false
+  t.integer "context_id", null: false
+  ...
+end
+```
