@@ -21,10 +21,19 @@ class UserDropdown extends React.Component {
   }
 
   render() {
+    let additionalOptions;
+    if (this.props.spaces[this.props.match.params.id].userIsAdmin){
+      additionalOptions = <li className="option"
+        onClick={(e) => this.navigateHome()} >
+        Invite members
+      </li>;
+    }
+
     return (
       <div className="user_dropdown hidden">
         <h4>{this.props.user.username}</h4>
         <ul className="options_list">
+          {additionalOptions}
           <li className="option"
             onClick={(e) => this.navigateHome()} >
             Home
