@@ -8,7 +8,8 @@ import {
 
 import {
   RECEIVE_SINGLE_CHANNEL,
-  CREATE_CHANNEL
+  CREATE_CHANNEL,
+  DELETE_CHANNEL
 } from '../actions/channel_actions';
 
 // import {
@@ -41,6 +42,16 @@ const spacesReducer = (state = {}, action) => {
       });
       channels.push(action.channel);
       newState[spaceId].channels = channels;
+      return newState;
+
+    case DELETE_CHANNEL:
+      newState = Object.assign({}, state);
+      channelId = action.channel.id;
+      channels = newState[action.channel.space_id].channels.
+        filter(function(channel) {
+          return channel.id !== action.channel.id;
+        });
+      newState[action.channel.space_id].channels = channels;
       return newState;
 
     case CREATE_SPACE:

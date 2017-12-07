@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LeftNav from './left_nav';
-import { deleteChannel } from '../../utils/channel_api_util';
+import { deleteChannel } from '../../actions/channel_actions';
 
 // const mapStateToProps = (state, ownProps) => {
 //   return ({
@@ -10,7 +10,7 @@ import { deleteChannel } from '../../utils/channel_api_util';
 // };
 
 const mapDispatchToProps = dispatch => ({
-  deleteChannel: (id) => deleteChannel(id)
+  deleteChannel: (id) => dispatch(deleteChannel(id))
 });
 
 export default connect(null,

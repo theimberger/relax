@@ -1,7 +1,6 @@
 import React from 'react';
 import UserDropdown from './user_dropdown';
 import { AddChannel, AddDirect } from "./add_channel_container";
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 class LeftNav extends React.Component {
@@ -12,6 +11,8 @@ class LeftNav extends React.Component {
       form: ""
     };
     this.openForm = this.openForm.bind(this);
+    this.deleteChannel = this.deleteChannel.bind(this);
+    this.updateParent = this.updateParent.bind(this);
   }
 
   openForm(type) {
@@ -23,6 +24,29 @@ class LeftNav extends React.Component {
 
   toggleUserDropDown() {
     $('.user_dropdown').toggleClass("hidden");
+  }
+
+  deleteChannel(id, e) {
+    e.preventDefault();
+    this.props.deleteChannel(id);
+
+    if (this.props.activeChannel.id === id) {
+      let general = this.props.space.channels[0];
+      this.props.passChangeToParent({activeChannel: general});
+      this.props.history.
+        push(`/spaces/${this.props.space.id}/channels/${general.id}`);
+    } else {
+      this.props.passChangeToParent({activeChannel: this.props.activeChannel});
+    }
+    return;
+  }
+
+  updateParent(channel, e){
+    if (e.target.tagName !== "I"){
+      this.props.passChangeToParent({activeChannel: channel});
+      this.props.history.
+        push(`/spaces/${this.props.space.id}/channels/${channel.id}`);
+    }
   }
 
   render() {
@@ -48,13 +72,10 @@ class LeftNav extends React.Component {
         }
 
         return (
-          <Link key={idx}
-            to={`/spaces/${this.props.space.id}/channels/${channel.id}`}>
-            <li onClick={
-              () => this.props.passChangeToParent({activeChannel: channel})}>
-              # {channel.title}
-            </li>
-          </Link>
+          <li key={idx}
+            onClick={(e) => this.updateParent(channel, e)}>
+            # {channel.title}
+          </li>
         );
       }
     });
@@ -68,20 +89,15 @@ class LeftNav extends React.Component {
 
         if (channel.title === this.props.user.username) {
           return (
-            <Link key={idx}
-              to={`/spaces/${this.props.space.id}/channels/${channel.id}`}>
-              <li className={active}
-                onClick={() => this.props.passChangeToParent(
-                  {activeChannel: channel})
-                }>
+            <li className={active} key={idx}
+              onClick={(e) => this.updateParent(channel, e)}>
 
-                  <span className="status_circle"></span>
-                  {channel.title}
-                  <span style={{color: "#777"}}> (you) </span>
-                <i className="fa fa-times-circle" aria-hidden="true"
-                  onClick={() => this.props.deleteChannel(channel.id)}></i>
-              </li>
-            </Link>
+                <span className="status_circle"></span>
+                {channel.title}
+                <span style={{color: "#777"}}> (you) </span>
+              <i className="fa fa-times-circle" aria-hidden="true"
+                onClick={(e) => this.deleteChannel(channel.id, e)}></i>
+            </li>
           );
         }
 
@@ -95,18 +111,13 @@ class LeftNav extends React.Component {
         title = title[0].username;
 
         return (
-          <Link key={idx}
-            to={`/spaces/${this.props.space.id}/channels/${channel.id}`}>
-            <li className={active}
-              onClick={() => this.props.passChangeToParent(
-                {activeChannel: channel})
-              }>
-                <span className="status_circle"></span>
-                {title}
-              <i className="fa fa-times-circle" aria-hidden="true"
-                onClick={() => this.props.deleteChannel(channel.id)}></i>
-            </li>
-          </Link>
+          <li className={active} key={idx}
+            onClick={(e) => this.updateParent(channel, e)}>
+              <span className="status_circle"></span>
+              {title}
+            <i className="fa fa-times-circle" aria-hidden="true"
+              onClick={(e) => this.deleteChannel(channel.id, e)}></i>
+          </li>
         );
       }
     }, this);
@@ -151,7 +162,7 @@ class LeftNav extends React.Component {
           updateActiveChannel={
             (data) => this.props.passChangeToParent({activeChannel: data})
           }/>
-          
+
       </div>
     );
   }
