@@ -8,7 +8,6 @@ const ChannelOptions = (props) => {
     $('.channel_options').toggleClass("hidden");
   };
   let additionalOptions = [];
-  debugger
   if (props.channel.title !== "general"){
     additionalOptions.push(
       <li className="option" key="1"
