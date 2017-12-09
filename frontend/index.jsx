@@ -19,16 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //testing
-  window.login = login;
-  window.logout = logout;
-  window.signup = signup;
-
-  window.requestUserSpaces = requestUserSpaces;
-  window.postSpace = postSpace;
-  window.requestSingleSpace = requestSingleSpace;
-  
-  window.state = store.getState();
-  window.dispatch = store.dispatch;
+  // window.login = login;
+  // window.logout = logout;
+  // window.signup = signup;
+  //
+  // window.requestUserSpaces = requestUserSpaces;
+  // window.postSpace = postSpace;
+  // window.requestSingleSpace = requestSingleSpace;
+  //
+  // window.state = store.getState();
+  // window.dispatch = store.dispatch;
   //testing end
 
 
