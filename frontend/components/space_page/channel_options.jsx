@@ -24,15 +24,28 @@ const ChannelOptions = (props) => {
     toggleVis();
   };
 
+  if (props.channel.admin === props.user && !props.channel.is_direct){
+
+    additionalOptions.push(
+      <li key="invite" className="option">Add members</li>
+    );
+
+    if (props.channel.title !== "general") {
+      additionalOptions.push(
+        <li key="delete" className="option">Delete channel</li>
+      );
+    }
+
+  }
 
 
   return (
     <div className="channel_options hidden">
       <ul className="options_list">
+        {additionalOptions}
         <li className="option" onClick={showDetails}>
           View channel details
         </li>
-        {additionalOptions}
       </ul>
     </div>
   );

@@ -34,7 +34,7 @@ const Header = (props) => {
         <i className="fa fa-info-circle" aria-hidden="true"
           onClick={showSidebar}></i>
       </section>
-      <ChannelOptions channel={props.activeChannel} />
+      <ChannelOptions channel={props.activeChannel} user={props.user.id} />
     </header>
   );
 };

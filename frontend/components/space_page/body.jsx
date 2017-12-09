@@ -47,6 +47,15 @@ class Body extends React.Component {
     if (this.props !== newProps){
       let newState = Object.assign({}, this.state, this.data);
       newState.space = newProps.spaces[this.props.match.params["id"]];
+      if (newState.activeChannel) {
+        newState.activeChannel = newState.activeChannel.id;
+
+        newState.activeChannel = newProps.
+          spaces[this.props.match.params["id"]].
+          channels.filter((channel) => channel.id === newState.activeChannel);
+
+        newState.activeChannel = newState.activeChannel[0];
+      }
       this.setState(newState);
     }
     this.data = {};
@@ -61,7 +70,6 @@ class Body extends React.Component {
 
 
   render() {
-
     if (this.state.status === "pending") {
       return (
         <h1>Loading...</h1>
@@ -87,10 +95,13 @@ class Body extends React.Component {
 
 
         <div className="space_main">
+
           <Route path="/spaces/:id/channels/:channel_id"
             component={ChannelPage} />
+
           <Sidebar channel={this.state.activeChannel}
             user= {this.props.user} />
+
         </div>
 
       </div>
