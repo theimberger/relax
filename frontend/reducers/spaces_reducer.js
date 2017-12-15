@@ -12,6 +12,10 @@ import {
   DELETE_CHANNEL
 } from '../actions/channel_actions';
 
+import {
+  DELETE_MEMBERSHIP
+} from '../actions/channel_actions';
+
 // import {
 //   CREATE_MEMBERSHIP,
 //   RECEIVE_MEMBERSHIP_ERRORS
@@ -45,6 +49,7 @@ const spacesReducer = (state = {}, action) => {
       return newState;
 
     case DELETE_CHANNEL:
+    case DELETE_MEMBERSHIP:
       newState = Object.assign({}, state);
       channelId = action.channel.id;
       channels = newState[action.channel.space_id].channels.
