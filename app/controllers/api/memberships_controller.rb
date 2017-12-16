@@ -47,7 +47,9 @@ class Api::MembershipsController < ApplicationController
       where(collection_type: :Channel).
       where(collection_id: params[:id]).
       where(user_id: current_user.id).delete_all
-    render json: ["membership deleted"], status: 200
+
+    channel = Channel.find(params[:id])
+    render json: {id: channel.id, space_id: channel.space_id}, status: 200
   end
 
   private

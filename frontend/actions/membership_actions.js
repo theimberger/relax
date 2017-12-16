@@ -9,9 +9,9 @@ const receiveMembership = (membership) => ({
   membership
 });
 
-const removeMembership = (space) => ({
+const removeMembership = (channel) => ({
   type: DESTROY_MEMBERSHIP,
-  space
+  channel
 });
 
 const receiveMembershipErrors = (errors) => ({
@@ -29,6 +29,6 @@ export const joinGroup = (membership) => dispatch => (
 );
 
 export const leaveGroup = user => dispatch => (
-  ApiUtils.login(user).then( (res) => dispatch(removeMembership(res)),
+  ApiUtils.destroyMembership(user).then( (res) => dispatch(removeMembership(res)),
   err => dispatch(receiveMembershipErrors(err)))
 );

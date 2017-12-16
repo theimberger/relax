@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { destroyMembership } from '../../utils/membership_api_util.js';
+import { leaveGroup } from '../../actions/membership_actions.js';
 
 const ChannelOptions = (props) => {
+  debugger
   const toggleVis = () => {
     $('.channel_options').toggleClass("hidden");
   };
@@ -13,7 +14,7 @@ const ChannelOptions = (props) => {
       <li className="option" key="1"
         onClick={() => {
           toggleVis();
-          destroyMembership(props.channel.id);
+          props.leaveChannel(props.channel.id);
         }}>
         Leave Channel</li>
     );
@@ -51,4 +52,9 @@ const ChannelOptions = (props) => {
   );
 };
 
-export default withRouter(ChannelOptions);
+
+const mapDispatchToProps = dispatch => ({
+  leaveChannel: (id) => dispatch(leaveGroup(id))
+});
+
+export default withRouter(connect(null, mapDispatchToProps)(ChannelOptions));

@@ -13,8 +13,8 @@ import {
 } from '../actions/channel_actions';
 
 import {
-  DELETE_MEMBERSHIP
-} from '../actions/channel_actions';
+  DESTROY_MEMBERSHIP
+} from '../actions/membership_actions';
 
 // import {
 //   CREATE_MEMBERSHIP,
@@ -49,7 +49,8 @@ const spacesReducer = (state = {}, action) => {
       return newState;
 
     case DELETE_CHANNEL:
-    case DELETE_MEMBERSHIP:
+    case DESTROY_MEMBERSHIP:
+      debugger
       newState = Object.assign({}, state);
       channelId = action.channel.id;
       channels = newState[action.channel.space_id].channels.

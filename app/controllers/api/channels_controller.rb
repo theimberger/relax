@@ -74,7 +74,6 @@ class Api::ChannelsController < ApplicationController
     channel.messages.each { |m| m.delete }
     channel.memberships.each { |m| m.delete }
     channel.delete
-    @channel = channel
     render json: {id: channel.id, space_id: channel.space_id}, status: 200
   end
 
