@@ -8,7 +8,7 @@
     "babel-preset-react": "^6.24.1",
     "lodash": "^4.17.4",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react-dom": "^16.0.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redis": "^2.8.0",
